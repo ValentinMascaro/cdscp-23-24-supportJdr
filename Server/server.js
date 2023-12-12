@@ -29,7 +29,7 @@ wss.on('connection', (ws) => {
   });
 
   // Gérer la fermeture de la connexion
-  ws.on('close', () => {
+  ws.on('close', () => { 
     console.log('Connexion WebSocket fermée');
   });
 });
