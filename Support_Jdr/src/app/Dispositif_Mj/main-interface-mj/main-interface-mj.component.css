@@ -1,0 +1,10 @@
+/* main-interface-mj.component.css */
+.main-interface-buttons {
+    display: flex;
+    flex-direction: column; /* Changez en 'row' si vous préférez un alignement horizontal */
+    align-items: center; /* Centrer les boutons verticalement s'ils sont en ligne */
+    justify-content: space-around; /* Espacer uniformément les boutons */
+    gap: 10px; /* Espacer les boutons verticalement */
+    padding: 20px;
+  }
+  

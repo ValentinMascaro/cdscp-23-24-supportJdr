@@ -1,1 +1,27 @@
-<p>main-interface-mj works!</p>
+<!-- main-interface-mj.component.html -->
+<div class="main-interface-buttons">
+    <app-ambiance-button 
+      imgSrc="../../../assets/weather.png"
+      title="Météo"
+      [options]="optionsForMeteoButton">
+    </app-ambiance-button>
+  
+    <app-ambiance-button 
+      imgSrc="../../../assets/fete.png"
+      title="Festival"
+      [options]="optionsForFestivalButton">
+    </app-ambiance-button>
+  
+    <app-ambiance-button 
+      imgSrc="../../../assets/duel.png"
+      title="Combat"
+      [options]="optionsForCombatButton">
+    </app-ambiance-button>
+  
+    <app-ambiance-button 
+      imgSrc="../../../assets/terrain.png" 
+      title="Terrain"
+      [options]="optionsForTerrainButton">
+    </app-ambiance-button>
+  </div>
+  

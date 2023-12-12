@@ -1,0 +1,60 @@
+/* ambiance-button.component.css */
+.ambiance-btn {
+    min-width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.3s; /* transition douce pour le changement de couleur */
+  }
+
+  .ambiance-btn:hover {
+    background-color: #e0e0e0; /* la couleur de fond change au survol */
+}
+  
+  .ambiance-btn img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .down-arrow {
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    margin-left: 10px;
+}
+
+/* ambiance-button.component.css */
+.ambiance-btn-container {
+    position: relative;
+    display: inline-block; /* Assurez-vous que le conteneur est inline-block ou block */
+}
+
+.menu {
+    /* Supprimez les propriétés position, top, left, transform */
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 100%; /* ou max-content, selon le style souhaité */
+}
+
+.menu a {
+    padding: 8px 12px;
+    display: block; /* Affiche chaque option sur sa propre ligne */
+    text-decoration: none;
+    color: black;
+}
+
+.menu a:hover {
+    background-color: #f0f0f0;
+}

@@ -1,0 +1,11 @@
+<!-- ambiance-button.component.html -->
+<div class="ambiance-btn-container">
+    <button class="ambiance-btn" (click)="toggleMenu()">
+      <img *ngIf="imgSrc" [src]="imgSrc" [alt]="title" />
+      {{ title }}
+      <span class="down-arrow"></span>
+    </button>
+    <div class="menu" *ngIf="menuOpen">
+        <a *ngFor="let option of options" href="#">{{ option }}</a>
+    </div>
+</div>
