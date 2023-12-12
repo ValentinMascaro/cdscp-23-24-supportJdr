@@ -1,3 +1,5 @@
+// WARNING : lancer ngrock sur le même port que le serveur (3000)
+
 const WebSocket = require('ws');
 const http = require('http');
 
