@@ -72,19 +72,27 @@ function handleMessage(message) {
 
     }
 
-    else if (message.type == "message") {
-        // // Send message to recipient
-        // const recipient = clients.get(message.recipient);
-        // if (recipient.readyState === WebSocket.OPEN) {
-        //     recipient.send(message);
-        //     // recipient.send(message.data);
-        // }
-        // else {
-        //     console.log(`Client ${recipientId} is not connected => message not sent`);
-            
-        // }
+    
+    else if(message.type == "ambiance"){
+        console.log("Ambiance message received");
+        handleAmbiance(message.data);
     }
+    
     else {
-        console.log("Unknown message type");
+        console.log("Message type " + message.type + " not implemented yet");
+    }
+}
+
+
+function handleAmbiance(ambiance){
+    if(ambiance.name == "orage"){
+        console.log("Ambiance orage");
+        // TODO : send to the node-red server a message to play the sound every 10 seconds
+        // TODO : send to the node-red server a message to stop the sound after 1 minute
+    
+    }
+    // ...
+    else {
+        console.log("Ambiance " + ambiance.name + " not implemented yet");
     }
 }

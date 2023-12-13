@@ -21,14 +21,10 @@ socket.addEventListener('message', (event) => {
         // add the player to the list of players
         players.set(message.data.name, message.data.id);
         console.log("Client", message.data.id, "is now known as", message.data.name);
-    } else if (message.type == "message") {
-        // TODO
-    } else if (message.type == "object_received") {
-        // TODO
-    } else if (message.type == "object_sent") {
-        // TODO
-    } else {
-        console.log("Unknown message type");
+    }
+    
+    else {
+        console.log("Message type " + message.type + " not implemented yet");
     }
 });
 
