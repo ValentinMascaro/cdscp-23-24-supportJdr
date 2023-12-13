@@ -1,4 +1,5 @@
-const socket = new WebSocket('ws://localhost:3000'); // Assurez-vous que l'URL correspond à votre serveur WebSocket
+// const socket = new WebSocket('ws://localhost:3000');
+const socket = new WebSocket('wss://0064-134-59-191-34.ngrok.io');
 
 // Dictionnary Name -> Id
 const players = new Map();
@@ -29,8 +30,6 @@ socket.addEventListener('message', (event) => {
     } else {
         console.log("Unknown message type");
     }
-
-
 });
 
 
@@ -57,7 +56,6 @@ function closeConnection() {
 function sendName() {
     const nameInput = document.getElementById('nameInput');
     const name = nameInput.value;
-
     if (name.trim() !== '') {
         nameInput.value = ''; // Effacer le champ de saisie après l'envoi
     }

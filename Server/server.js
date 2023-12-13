@@ -19,8 +19,6 @@ const players = new Map();
 // Écouter les connexions WebSocket
 wss.on('connection', (ws) => {
 
-    // Generate a unique ID for this client
-    // const clientId = Date.now();
     const clientId = clients.size + 1;
     console.log('Nouvelle connexion WebSocket établie avec le client', clientId);
     clients.set(clientId, ws);
