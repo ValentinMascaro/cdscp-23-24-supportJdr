@@ -12,8 +12,22 @@
 <body>
 
   <h1>WebSocket Client</h1>
-  <input type="text" id="messageInput" placeholder="Entrez votre message">
-  <button onclick="sendMessage()">Envoyer</button>
+
+  <!-- Form to send a message to a specific person -->
+  <form id="form" onsubmit="return false;">
+    <label for="messageInput">Message à envoyer</label>
+    <input type="text" id="messageInput" placeholder="Entrez votre message">
+    <label for="nameInput">Nom du destinataire</label>
+    <select name="mpDestinataireInput" id="mpDestinataireInput">
+      <!-- options add by javascrip -->
+    </select>
+    <!-- <input type="text" id="mpDestinataireInput" placeholder="Entrez le nom du destinataire"> -->
+    <button onclick="sendMessage()">Envoyer</button>
+  </form>
+
+
+  <!-- <input type="text" id="messageInput" placeholder="Entrez votre message"> -->
+  
   <button onclick="closeConnection()">Fermer la connexion</button>
 
   <input type="text" id="nameInput" placeholder="Entrez votre nom">

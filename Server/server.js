@@ -27,6 +27,8 @@ wss.on('connection', (ws) => {
     ws.on('message', (message) => {
         // console.log(`Message reçu de ${clientId}: ${message}`);
         // Analyser le message pour extraire l'identifiant du destinataire
+        console.log("Message reçu:", message);
+        console.log("Parse JSON:", JSON.parse(message));
         handleMessage(JSON.parse(message));
     });
 
@@ -43,21 +45,24 @@ server.listen(3000, () => {
 });
 
 
+
+
 function handleMessage(message) {
-    /* message format : 
-    {
-        type: "message",
-        data: "message data"
-    }
-    */
 
     if(message.type == "first_connection") {
         // associate the client id with the player name
         const clientId = clients.size;
-        players.set(message.data, clientId );
-        console.log("Client", clientId, "is now known as", message.data);
+        
         // send to all clients the new client
-        const messageToSend = {
+
+        const messageToSendLstPlayers = {
+            type: "list_players",
+            data: Array.from(players.keys())
+        };
+
+        clients.get(clientId).send(JSON.stringify(messageToSendLstPlayers));
+
+        const messageToSendToAll = {
             type: "new_player",
             data: {
                 name: message.data,
@@ -66,10 +71,26 @@ function handleMessage(message) {
         };
         clients.forEach((client) => {
             if (client.readyState === WebSocket.OPEN) {
-                client.send(JSON.stringify(messageToSend));
+                client.send(JSON.stringify(messageToSendToAll));
             }
         });
+        players.set(message.data, clientId );
+        console.log("Client", clientId, "is now known as", message.data);
+    }
+    else if(message.type == "private_message") {
+        // send to the client the private message
+        const destClientId = players.get(message.data.to);
 
+        const messageToSend = {
+            type: "private_message",
+            data: {
+                from: message.data.from,
+                to: message.data.to,
+                message: message.data.message
+            }
+        };
+
+        clients.get(destClientId).send(JSON.stringify(messageToSend));
     }
 
     
