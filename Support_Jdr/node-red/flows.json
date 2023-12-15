@@ -1,0 +1,300 @@
+[
+    {
+        "id": "bb95863853f0457d",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "92c40fb73607b680",
+        "type": "debug",
+        "z": "bb95863853f0457d",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "510dbe03dc6a26d7",
+        "type": "openhab2-get2",
+        "z": "bb95863853f0457d",
+        "name": "",
+        "controller": "f33be889430a5f14",
+        "itemname": "ClassroomLights01_Switch",
+        "topic": "",
+        "sendnull": false,
+        "x": 220,
+        "y": 260,
+        "wires": [
+            [
+                "92c40fb73607b680"
+            ]
+        ]
+    },
+    {
+        "id": "c486dd0ed8776946",
+        "type": "inject",
+        "z": "bb95863853f0457d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 100,
+        "wires": [
+            [
+                "510dbe03dc6a26d7"
+            ]
+        ]
+    },
+    {
+        "id": "ce661cac4b1505cb",
+        "type": "openhab2-out2",
+        "z": "bb95863853f0457d",
+        "name": "",
+        "controller": "f33be889430a5f14",
+        "itemname": "ClassroomLights01_Switch",
+        "topic": "ItemCommand",
+        "payload": "OFF",
+        "onlywhenchanged": false,
+        "x": 320,
+        "y": 420,
+        "wires": [
+            [
+                "92c40fb73607b680"
+            ]
+        ]
+    },
+    {
+        "id": "6e427261724610bd",
+        "type": "inject",
+        "z": "bb95863853f0457d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 80,
+        "y": 400,
+        "wires": [
+            [
+                "ce661cac4b1505cb"
+            ]
+        ]
+    },
+    {
+        "id": "0185ea1ad259ca17",
+        "type": "inject",
+        "z": "bb95863853f0457d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 80,
+        "y": 500,
+        "wires": [
+            [
+                "2f1c8d41735a0a0c"
+            ]
+        ]
+    },
+    {
+        "id": "2f1c8d41735a0a0c",
+        "type": "openhab2-out2",
+        "z": "bb95863853f0457d",
+        "name": "",
+        "controller": "f33be889430a5f14",
+        "itemname": "ClassroomLights01_Switch",
+        "topic": "ItemCommand",
+        "payload": "ON",
+        "onlywhenchanged": false,
+        "x": 300,
+        "y": 500,
+        "wires": [
+            [
+                "92c40fb73607b680"
+            ]
+        ]
+    },
+    {
+        "id": "ec3136804bc34ffc",
+        "type": "openhab2-out2",
+        "z": "bb95863853f0457d",
+        "name": "",
+        "controller": "f33be889430a5f14",
+        "itemname": "Alexa_TextCommand",
+        "topic": "ItemCommand",
+        "payload": "",
+        "onlywhenchanged": false,
+        "x": 420,
+        "y": 740,
+        "wires": [
+            [
+                "1427ec6b8b9cb511"
+            ]
+        ]
+    },
+    {
+        "id": "98ee4fd7ab129b5b",
+        "type": "inject",
+        "z": "bb95863853f0457d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "dit bonjour",
+        "payloadType": "str",
+        "x": 160,
+        "y": 600,
+        "wires": [
+            [
+                "1427ec6b8b9cb511"
+            ]
+        ]
+    },
+    {
+        "id": "3d2e51a3266c2e32",
+        "type": "inject",
+        "z": "bb95863853f0457d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 840,
+        "wires": [
+            [
+                "a89720c43acf1953"
+            ]
+        ]
+    },
+    {
+        "id": "a89720c43acf1953",
+        "type": "openhab2-out2",
+        "z": "bb95863853f0457d",
+        "name": "",
+        "controller": "f33be889430a5f14",
+        "itemname": "ClassroomLights01_Switch",
+        "topic": "ItemCommand",
+        "payload": "ON",
+        "onlywhenchanged": false,
+        "x": 380,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1427ec6b8b9cb511",
+        "type": "debug",
+        "z": "bb95863853f0457d",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "d70d7df26b6dac51",
+        "type": "http in",
+        "z": "bb95863853f0457d",
+        "name": "",
+        "url": "/alexa/:value",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 80,
+        "y": 740,
+        "wires": [
+            [
+                "ec3136804bc34ffc"
+            ]
+        ]
+    },
+    {
+        "id": "f33be889430a5f14",
+        "type": "openhab2-controller2",
+        "name": "openHAB Ubiquarium",
+        "protocol": "http",
+        "host": "openhab.ubiquarium.fr",
+        "port": "8080",
+        "path": "",
+        "username": "",
+        "password": "",
+        "ohversion": "v3",
+        "token": "oh.dummyiot.6vBgcdLf3QqdVRnWmy3r4RjMdjp17tLZC06EskSpDH1oAQ9sQLXQCxI2uuBaFQRkmzB1tsSfIFH9p7C3GjsQ"
+    }
+]
