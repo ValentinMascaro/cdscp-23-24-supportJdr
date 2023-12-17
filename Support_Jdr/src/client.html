@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebSocket Client</title>
-  <script src="./client.js"></script>
+  <link rel="stylesheet" href="./styles.css">
+
 
 </head>
 
@@ -13,25 +14,33 @@
 
   <h1>WebSocket Client</h1>
 
-  <!-- Form to send a message to a specific person -->
+  Form to send a message to a specific person
   <form id="form" onsubmit="return false;">
     <label for="messageInput">Message à envoyer</label>
     <input type="text" id="messageInput" placeholder="Entrez votre message">
     <label for="nameInput">Nom du destinataire</label>
-    <select name="mpDestinataireInput" id="mpDestinataireInput">
-      <!-- options add by javascrip -->
-    </select>
-    <!-- <input type="text" id="mpDestinataireInput" placeholder="Entrez le nom du destinataire"> -->
+    <select name="mpDestinataireInput" id="mpDestinataireInput"></select>
     <button onclick="sendMessage()">Envoyer</button>
   </form>
 
 
-  <!-- <input type="text" id="messageInput" placeholder="Entrez votre message"> -->
-  
   <button onclick="closeConnection()">Fermer la connexion</button>
 
-  <input type="text" id="nameInput" placeholder="Entrez votre nom">
-  <button onclick="sendName()">Envoyer</button>
+  <!-- <input type="text" id="nameInput" placeholder="Entrez votre nom">
+  <button onclick="changeName()">Envoyer</button> -->
+  <br />
+  <br />
+  <button id="clearButton" onclick="clearLayer()">Effacer</button>
+
+  <canvas id="canvasCommun" width="720" height="500"></canvas>
+  <canvas id="canvasLayer"></canvas>
+
+  <!-- <canvas id="canvas1"></canvas>
+  <canvas id="canvas2"></canvas>
+  <canvas id="canvas3"></canvas> -->
+  <script src="./Client.js"></script>
+  <script src="./main.js"></script>
+  <script src="./canvas.js"></script>
 
 </body>
 
