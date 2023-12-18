@@ -1,0 +1,314 @@
+[
+    {
+        "id": "98e0da7e04a7f1a1",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c79c6690bfd36b55",
+        "type": "http in",
+        "z": "98e0da7e04a7f1a1",
+        "name": "envoi commande vocal",
+        "url": "/commande/:commande",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 472.20001220703125,
+        "y": 140.1999969482422,
+        "wires": [
+            [
+                "e660e11d3518e8d0",
+                "a3d1700bac54e7de"
+            ]
+        ]
+    },
+    {
+        "id": "e660e11d3518e8d0",
+        "type": "function",
+        "z": "98e0da7e04a7f1a1",
+        "name": "function 2",
+        "func": "msg.payload = {\n    commande: String(msg.req.params.commande),\n    \n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 120,
+        "wires": [
+            [
+                "873b4cf174929ef4",
+                "27e716c18c6b78ed"
+            ]
+        ]
+    },
+    {
+        "id": "873b4cf174929ef4",
+        "type": "debug",
+        "z": "98e0da7e04a7f1a1",
+        "name": "function2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "a3d1700bac54e7de",
+        "type": "http response",
+        "z": "98e0da7e04a7f1a1",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 460,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "27e716c18c6b78ed",
+        "type": "switch",
+        "z": "98e0da7e04a7f1a1",
+        "name": "",
+        "property": "payload.commande",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "^light\\.?s?$",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "^dark(\\.?ness)?\\.?$",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 430,
+        "y": 380,
+        "wires": [
+            [
+                "b9bfa3f159a2f579"
+            ],
+            [
+                "eb2c636b00de036e"
+            ],
+            [
+                "9a8ef4bce20e8b1f"
+            ]
+        ]
+    },
+    {
+        "id": "3efa75918868f4ce",
+        "type": "openhab2-out2",
+        "z": "98e0da7e04a7f1a1",
+        "name": "Light OFF",
+        "controller": "f33be889430a5f14",
+        "itemname": "ClassroomLights01_Switch",
+        "topic": "ItemCommand",
+        "payload": "OFF",
+        "onlywhenchanged": false,
+        "x": 920,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8e3c7e7d04982be9",
+        "type": "openhab2-out2",
+        "z": "98e0da7e04a7f1a1",
+        "name": "Light ON",
+        "controller": "f33be889430a5f14",
+        "itemname": "ClassroomLights01_Switch",
+        "topic": "ItemCommand",
+        "payload": "ON",
+        "onlywhenchanged": false,
+        "x": 920,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9fe41130029faad1",
+        "type": "inject",
+        "z": "98e0da7e04a7f1a1",
+        "name": "OFF manuel",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 650,
+        "y": 580,
+        "wires": [
+            [
+                "3efa75918868f4ce"
+            ]
+        ]
+    },
+    {
+        "id": "d462b9f15a78ce75",
+        "type": "inject",
+        "z": "98e0da7e04a7f1a1",
+        "name": "ON manuel",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 650,
+        "y": 640,
+        "wires": [
+            [
+                "8e3c7e7d04982be9"
+            ]
+        ]
+    },
+    {
+        "id": "1b8c3ea8308ac193",
+        "type": "debug",
+        "z": "98e0da7e04a7f1a1",
+        "name": "ON",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1010,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "eb2c636b00de036e",
+        "type": "function",
+        "z": "98e0da7e04a7f1a1",
+        "name": "OFF",
+        "func": "msg.payload=\"OFF\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 360,
+        "wires": [
+            [
+                "3efa75918868f4ce",
+                "a3c32b2920412f62"
+            ]
+        ]
+    },
+    {
+        "id": "b9bfa3f159a2f579",
+        "type": "function",
+        "z": "98e0da7e04a7f1a1",
+        "name": "ON",
+        "func": "msg.payload=\"ON\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 420,
+        "wires": [
+            [
+                "1b8c3ea8308ac193",
+                "8e3c7e7d04982be9"
+            ]
+        ]
+    },
+    {
+        "id": "9a8ef4bce20e8b1f",
+        "type": "debug",
+        "z": "98e0da7e04a7f1a1",
+        "name": "Trash",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "a3c32b2920412f62",
+        "type": "debug",
+        "z": "98e0da7e04a7f1a1",
+        "name": "OFF",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "f33be889430a5f14",
+        "type": "openhab2-controller2",
+        "name": "openHAB Ubiquarium",
+        "protocol": "http",
+        "host": "openhab.ubiquarium.fr",
+        "port": "8080",
+        "path": "",
+        "username": "",
+        "password": "",
+        "ohversion": "v3",
+        "token": "oh.dummyiot.6vBgcdLf3QqdVRnWmy3r4RjMdjp17tLZC06EskSpDH1oAQ9sQLXQCxI2uuBaFQRkmzB1tsSfIFH9p7C3GjsQ"
+    }
+]
