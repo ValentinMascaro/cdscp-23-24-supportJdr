@@ -1,0 +1,49 @@
+/* players-stat.component.css */
+.player-stats-container {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .player-pseudo {
+    font-weight: bold;
+    color: #5a5a5a;
+  }
+  
+  .player-body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    text-align: center;
+  }
+  
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    .player-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .player-body {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .player-body {
+      grid-template-columns: 1fr;
+    }
+  }
+  
