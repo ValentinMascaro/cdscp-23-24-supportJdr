@@ -101,11 +101,11 @@ function changeName() {
     }
 }
 
-function soundStorm(){
+function sendAmbiance(ambianceName){
     // send message to the server to play the sound
     const messageToSend = {
         type: "ambiance",
-        data: "sound_storm"
+        data: ambianceName
     };
     socket.send(JSON.stringify(messageToSend));
 }

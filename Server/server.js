@@ -146,17 +146,16 @@ function handleMessage(client, message) {
     }
 }
 
-
-function handleAmbiance(ambiance){
-    if(ambiance.name == "storm"){
+const ambianceEnable = ["storm"]
+function handleAmbiance(ambiance) {
+    console.log("Ambiance received:", ambiance);
+    if (ambianceEnable.includes(ambiance)) {
         console.log("Ambiance orage");
         // send to node-red server GET request command/:command here : command/storm
-        const url = 'http://localhost:1880/command/storm';
+        const url = 'http://127.0.0.1:1880/commande/' + ambiance + '/';
         const options = {
             method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            // Supprimer l'option 'Content-Type': 'application/json'
         };
         const request = new Request(url, options);
         fetch(request)
@@ -165,22 +164,17 @@ function handleAmbiance(ambiance){
                     console.log("Request sent");
                 } else {
                     // console.error(`Request failed with status ${response.status}`);
-                    console.log("Not 200")
+                    console.log("Not 200");
                 }
             })
             .catch(error => {
                 console.error('Request failed', error);
             });
-
-        
-        
-    
-    }
-    // ...
-    else {
-        console.log("Ambiance " + ambiance.name + " not implemented yet");
+    } else {
+        console.log("Ambiance " + ambiance + " not implemented yet");
     }
 }
+
 
 
 function broadcastCanvasUpdate(message) {

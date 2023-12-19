@@ -1,0 +1,778 @@
+[
+    {
+        "id": "98e0da7e04a7f1a1",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "667f31f3c57c348d",
+        "type": "group",
+        "z": "98e0da7e04a7f1a1",
+        "name": "controle manuel",
+        "style": {
+            "stroke": "#0070c0",
+            "label": true
+        },
+        "nodes": [
+            "9fe41130029faad1",
+            "d462b9f15a78ce75"
+        ],
+        "x": 1214,
+        "y": 319,
+        "w": 212,
+        "h": 142
+    },
+    {
+        "id": "ea5643f02a2785f4",
+        "type": "group",
+        "z": "98e0da7e04a7f1a1",
+        "name": "frontiere",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "c79c6690bfd36b55",
+            "e660e11d3518e8d0",
+            "a3d1700bac54e7de"
+        ],
+        "x": 14,
+        "y": 39,
+        "w": 412,
+        "h": 142
+    },
+    {
+        "id": "3abbcb39492f979d",
+        "type": "group",
+        "z": "98e0da7e04a7f1a1",
+        "name": "contrôle lumière",
+        "style": {
+            "stroke": "#ffff00",
+            "label": true
+        },
+        "nodes": [
+            "eb2c636b00de036e",
+            "b9bfa3f159a2f579",
+            "7039774af855b4e4",
+            "ea3cc693fafacd5b"
+        ],
+        "x": 654,
+        "y": 139,
+        "w": 172,
+        "h": 262
+    },
+    {
+        "id": "6b03f36febd2ee50",
+        "type": "group",
+        "z": "98e0da7e04a7f1a1",
+        "name": "controle son",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "fa25c90f4199b120",
+            "eb0b2ad5f22aebc0"
+        ],
+        "x": 574,
+        "y": 419,
+        "w": 292,
+        "h": 142
+    },
+    {
+        "id": "c79c6690bfd36b55",
+        "type": "http in",
+        "z": "98e0da7e04a7f1a1",
+        "g": "ea5643f02a2785f4",
+        "name": "envoi commande vocal",
+        "url": "/commande/:commande",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 140,
+        "wires": [
+            [
+                "e660e11d3518e8d0",
+                "a3d1700bac54e7de"
+            ]
+        ]
+    },
+    {
+        "id": "e660e11d3518e8d0",
+        "type": "function",
+        "z": "98e0da7e04a7f1a1",
+        "g": "ea5643f02a2785f4",
+        "name": "function 2",
+        "func": "msg.payload = {\n    commande: String(msg.req.params.commande),\n    \n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 140,
+        "wires": [
+            [
+                "873b4cf174929ef4",
+                "27e716c18c6b78ed"
+            ]
+        ]
+    },
+    {
+        "id": "873b4cf174929ef4",
+        "type": "debug",
+        "z": "98e0da7e04a7f1a1",
+        "name": "function2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1060,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "a3d1700bac54e7de",
+        "type": "http response",
+        "z": "98e0da7e04a7f1a1",
+        "g": "ea5643f02a2785f4",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 300,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "27e716c18c6b78ed",
+        "type": "switch",
+        "z": "98e0da7e04a7f1a1",
+        "name": "",
+        "property": "payload.commande",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "^light\\.?s?$",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "^dark(\\.?ness)?\\.?$",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "^(storm|stone)\\.?$",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "^rain\\.?$",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "^stop\\.?$",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 6,
+        "x": 370,
+        "y": 320,
+        "wires": [
+            [
+                "b9bfa3f159a2f579"
+            ],
+            [
+                "eb2c636b00de036e"
+            ],
+            [
+                "7039774af855b4e4",
+                "ea3cc693fafacd5b",
+                "eb2c636b00de036e",
+                "eb0b2ad5f22aebc0"
+            ],
+            [
+                "fa25c90f4199b120"
+            ],
+            [
+                "4b91a7eceae274cf",
+                "44a6518bf9cf7b22",
+                "e52503d82bd0362b"
+            ],
+            [
+                "9a8ef4bce20e8b1f"
+            ]
+        ]
+    },
+    {
+        "id": "3efa75918868f4ce",
+        "type": "openhab2-out2",
+        "z": "98e0da7e04a7f1a1",
+        "name": "Light OFF",
+        "controller": "f33be889430a5f14",
+        "itemname": "ClassroomLights01_Switch",
+        "topic": "ItemCommand",
+        "payload": "OFF",
+        "onlywhenchanged": false,
+        "x": 1080,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8e3c7e7d04982be9",
+        "type": "openhab2-out2",
+        "z": "98e0da7e04a7f1a1",
+        "name": "Light ON",
+        "controller": "f33be889430a5f14",
+        "itemname": "ClassroomLights01_Switch",
+        "topic": "ItemCommand",
+        "payload": "ON",
+        "onlywhenchanged": false,
+        "x": 1080,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9fe41130029faad1",
+        "type": "inject",
+        "z": "98e0da7e04a7f1a1",
+        "g": "667f31f3c57c348d",
+        "name": "OFF manuel",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1330,
+        "y": 360,
+        "wires": [
+            [
+                "3efa75918868f4ce"
+            ]
+        ]
+    },
+    {
+        "id": "d462b9f15a78ce75",
+        "type": "inject",
+        "z": "98e0da7e04a7f1a1",
+        "g": "667f31f3c57c348d",
+        "name": "ON manuel",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1330,
+        "y": 420,
+        "wires": [
+            [
+                "8e3c7e7d04982be9"
+            ]
+        ]
+    },
+    {
+        "id": "1b8c3ea8308ac193",
+        "type": "debug",
+        "z": "98e0da7e04a7f1a1",
+        "name": "ON",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1070,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "eb2c636b00de036e",
+        "type": "function",
+        "z": "98e0da7e04a7f1a1",
+        "g": "3abbcb39492f979d",
+        "name": "OFF",
+        "func": "msg.payload=\"OFF\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 180,
+        "wires": [
+            [
+                "3efa75918868f4ce",
+                "a3c32b2920412f62"
+            ]
+        ]
+    },
+    {
+        "id": "b9bfa3f159a2f579",
+        "type": "function",
+        "z": "98e0da7e04a7f1a1",
+        "g": "3abbcb39492f979d",
+        "name": "ON",
+        "func": "msg.payload=\"ON\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 260,
+        "wires": [
+            [
+                "1b8c3ea8308ac193",
+                "8e3c7e7d04982be9"
+            ]
+        ]
+    },
+    {
+        "id": "9a8ef4bce20e8b1f",
+        "type": "debug",
+        "z": "98e0da7e04a7f1a1",
+        "name": "Trash",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "a3c32b2920412f62",
+        "type": "debug",
+        "z": "98e0da7e04a7f1a1",
+        "name": "OFF",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1010,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "7039774af855b4e4",
+        "type": "delay",
+        "z": "98e0da7e04a7f1a1",
+        "g": "3abbcb39492f979d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 740,
+        "y": 320,
+        "wires": [
+            [
+                "b9bfa3f159a2f579"
+            ]
+        ]
+    },
+    {
+        "id": "ea3cc693fafacd5b",
+        "type": "delay",
+        "z": "98e0da7e04a7f1a1",
+        "g": "3abbcb39492f979d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 740,
+        "y": 360,
+        "wires": [
+            [
+                "eb2c636b00de036e"
+            ]
+        ]
+    },
+    {
+        "id": "8a8978ba60fe178b",
+        "type": "openhab2-out2",
+        "z": "98e0da7e04a7f1a1",
+        "name": "alexa command",
+        "controller": "f33be889430a5f14",
+        "itemname": "Alexa_TextCommand",
+        "topic": "ItemCommand",
+        "payload": "",
+        "onlywhenchanged": false,
+        "x": 1060,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fa25c90f4199b120",
+        "type": "function",
+        "z": "98e0da7e04a7f1a1",
+        "g": "6b03f36febd2ee50",
+        "name": "ambiant sound RAIN",
+        "func": "msg.payload=\"Alexa, active sons d'ambiance pluie\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 520,
+        "wires": [
+            [
+                "8a8978ba60fe178b"
+            ]
+        ]
+    },
+    {
+        "id": "4b91a7eceae274cf",
+        "type": "function",
+        "z": "98e0da7e04a7f1a1",
+        "name": "STOP",
+        "func": "msg.payload=\"Alexa, stop\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 740,
+        "wires": [
+            [
+                "8a8978ba60fe178b"
+            ]
+        ]
+    },
+    {
+        "id": "eb0b2ad5f22aebc0",
+        "type": "function",
+        "z": "98e0da7e04a7f1a1",
+        "g": "6b03f36febd2ee50",
+        "name": "ambian sound Thunderstorm",
+        "func": "//msg.payload=\"Alexa, ask Sleep Jar to play Thunderstorm sounds\";\nmsg.payload=\"Alexa, active le son d'ambiance orage\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 460,
+        "wires": [
+            [
+                "8a8978ba60fe178b"
+            ]
+        ]
+    },
+    {
+        "id": "0a7198742a8edb53",
+        "type": "inject",
+        "z": "98e0da7e04a7f1a1",
+        "name": "OFF manuel",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "OFF",
+        "payloadType": "str",
+        "x": 650,
+        "y": 840,
+        "wires": [
+            [
+                "90167f3e7ace7da6"
+            ]
+        ]
+    },
+    {
+        "id": "90167f3e7ace7da6",
+        "type": "openhab2-out2",
+        "z": "98e0da7e04a7f1a1",
+        "name": "",
+        "controller": "f33be889430a5f14",
+        "itemname": "LightRGBTradfri01_Color",
+        "topic": "ItemCommand",
+        "payload": "",
+        "onlywhenchanged": false,
+        "x": 1110,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0a4df960304ab9cb",
+        "type": "inject",
+        "z": "98e0da7e04a7f1a1",
+        "name": "ON manuel",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ON",
+        "payloadType": "str",
+        "x": 650,
+        "y": 900,
+        "wires": [
+            [
+                "90167f3e7ace7da6"
+            ]
+        ]
+    },
+    {
+        "id": "2dcca8c2131c5922",
+        "type": "inject",
+        "z": "98e0da7e04a7f1a1",
+        "name": "cmd",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "100,64,100",
+        "payloadType": "str",
+        "x": 630,
+        "y": 960,
+        "wires": [
+            [
+                "90167f3e7ace7da6"
+            ]
+        ]
+    },
+    {
+        "id": "5412133afbf6e325",
+        "type": "function",
+        "z": "98e0da7e04a7f1a1",
+        "name": "rain color",
+        "func": "msg.payload=\"270,88,38\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 660,
+        "wires": [
+            [
+                "90167f3e7ace7da6"
+            ]
+        ]
+    },
+    {
+        "id": "c3e87ece65cc0bbe",
+        "type": "inject",
+        "z": "98e0da7e04a7f1a1",
+        "name": "tonnerre",
+        "props": [
+            {
+                "p": "payload.commande",
+                "v": "storm",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 260,
+        "y": 480,
+        "wires": [
+            [
+                "27e716c18c6b78ed"
+            ]
+        ]
+    },
+    {
+        "id": "768b09715f8715e5",
+        "type": "inject",
+        "z": "98e0da7e04a7f1a1",
+        "name": "STOP",
+        "props": [
+            {
+                "p": "payload.commande",
+                "v": "stop",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 420,
+        "wires": [
+            [
+                "27e716c18c6b78ed"
+            ]
+        ]
+    },
+    {
+        "id": "44a6518bf9cf7b22",
+        "type": "function",
+        "z": "98e0da7e04a7f1a1",
+        "name": "HSB on",
+        "func": "msg.payload=\"270,88,38\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 620,
+        "wires": [
+            [
+                "90167f3e7ace7da6"
+            ]
+        ]
+    },
+    {
+        "id": "e52503d82bd0362b",
+        "type": "delay",
+        "z": "98e0da7e04a7f1a1",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 480,
+        "y": 640,
+        "wires": [
+            [
+                "5412133afbf6e325"
+            ]
+        ]
+    },
+    {
+        "id": "7b7b8fd117f6fe7c",
+        "type": "openhab2-out2",
+        "z": "98e0da7e04a7f1a1",
+        "name": "",
+        "controller": "f33be889430a5f14",
+        "itemname": "LightRGBTradfri01_Color",
+        "topic": "ItemCommand",
+        "payload": "",
+        "onlywhenchanged": false,
+        "x": 1070,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f33be889430a5f14",
+        "type": "openhab2-controller2",
+        "name": "openHAB Ubiquarium",
+        "protocol": "http",
+        "host": "openhab.ubiquarium.fr",
+        "port": "8080",
+        "path": "",
+        "username": "",
+        "password": "",
+        "ohversion": "v3",
+        "token": "oh.dummyiot.6vBgcdLf3QqdVRnWmy3r4RjMdjp17tLZC06EskSpDH1oAQ9sQLXQCxI2uuBaFQRkmzB1tsSfIFH9p7C3GjsQ"
+    }
+]
