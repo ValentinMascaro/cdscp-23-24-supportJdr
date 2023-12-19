@@ -148,10 +148,32 @@ function handleMessage(client, message) {
 
 
 function handleAmbiance(ambiance){
-    if(ambiance.name == "orage"){
+    if(ambiance.name == "storm"){
         console.log("Ambiance orage");
-        // TODO : send to the node-red server a message to play the sound every 10 seconds
-        // TODO : send to the node-red server a message to stop the sound after 1 minute
+        // send to node-red server GET request command/:command here : command/storm
+        const url = 'http://localhost:1880/command/storm';
+        const options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        const request = new Request(url, options);
+        fetch(request)
+            .then(response => {
+                if (response.status === 200) {
+                    console.log("Request sent");
+                } else {
+                    // console.error(`Request failed with status ${response.status}`);
+                    console.log("Not 200")
+                }
+            })
+            .catch(error => {
+                console.error('Request failed', error);
+            });
+
+        
+        
     
     }
     // ...
@@ -197,4 +219,35 @@ function mergeCanvasLayers() {
     const mergedCanvas = allCanvasLayers.join('\n');
 
     return mergedCanvas;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+function soundStorm() {
+    const util = require('util');
+    const exec = util.promisify(require('child_process').exec);
+
+    async function executePythonFunction(functionName) {
+        const pythonScriptPath = "C:/Users/Lucas/Documents/Fac/BIMESTRE_2/Dev_Cyber/cdscp-23-24-supportJdr/Server/pythonScript.py";
+        const commandePython = `python ${pythonScriptPath} ${functionName}`;
+
+        try {
+            const { stdout, stderr } = await exec(commandePython);
+            const resultatPython = stdout.trim();
+            return resultatPython;
+        } catch (erreur) {
+            console.error(`Erreur d'exécution : ${erreur}`);
+            throw erreur; // Vous pouvez lancer l'erreur à l'appelant si nécessaire
+        }
+    }
 }

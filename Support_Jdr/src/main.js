@@ -15,7 +15,7 @@ socket.addEventListener('message', (event) => {
     const message = JSON.parse(event.data);
     console.log('Message du serveur :', message.type);
 
-    if(message.type === "your_data"){
+    if (message.type === "your_data") {
         me.id = message.data.id;
         me.name = message.data.name;
         me.websocket = socket;
@@ -32,7 +32,7 @@ socket.addEventListener('message', (event) => {
     else if (message.type == "new_player") {
         addClientToOptions(message.data);
     }
-    
+
     else if (message.type == "private_message") {
         // display the private message
         console.log("Private message from", message.data.from, "to", message.data.to, ":", message.data.message);
@@ -66,7 +66,7 @@ function sendMessage() {
 
     const destInput = document.getElementById('mpDestinataireInput');
     const clientDest = JSON.parse(destInput.value);
-    
+
     const messageToSend = {
         type: "private_message",
         data: {
@@ -94,9 +94,18 @@ function changeName() {
         // send the new name to the server
         const messageToSend = {
             type: "change_name",
-            data:name
+            data: name
         };
     } else {
         console.warn("You should set your name before sending a message");
     }
+}
+
+function soundStorm(){
+    // send message to the server to play the sound
+    const messageToSend = {
+        type: "ambiance",
+        data: "sound_storm"
+    };
+    socket.send(JSON.stringify(messageToSend));
 }
