@@ -20,10 +20,10 @@ wss.on('connection', (ws) => {
 
     // Check if the client is already known
     if (clientList.getClientByWebSocket(ws) != null) {
-        console.warn("Client already known" );
+        console.warn("Client already known");
         return;
     }
-    
+
     // send him the list of players
     const messageToSendLstPlayers = {
         type: "list_players",
@@ -35,7 +35,7 @@ wss.on('connection', (ws) => {
     // BY KEEPING THE CLIENT HERE, we avoid to search it in the list
     const client = new Client(ws, Date.now());
     console.log('Nouvelle connexion WebSocket :', client.id, client.name);
-    ws.send(JSON.stringify({type: "your_data", data: client}));
+    ws.send(JSON.stringify({ type: "your_data", data: client }));
 
 
     // Add the client to the list
@@ -61,7 +61,7 @@ wss.on('connection', (ws) => {
     ws.on('message', (message) => {
         // Analyser le message pour extraire l'identifiant du destinataire
         console.log(`Receive message ${message} from ${client.id}`);
-        
+
         handleMessage(client, JSON.parse(message));
     });
 
@@ -82,42 +82,14 @@ function handleMessage(client, message) {
 
     console.log("Message type:", message.type);
 
-    // if(message.type == "first_connection") {
-    //     // associate the client id with the player name
-    //     const clientId = clientList.size;
-        
-    //     // send to all clientList the new client
-
-    //     const messageToSendLstPlayers = {
-    //         type: "list_players",
-    //         data: Array.from(players.keys())
-    //     };
-
-    //     clientList.get(clientId).send(JSON.stringify(messageToSendLstPlayers));
-
-    //     const messageToSendToAll = {
-    //         type: "new_player",
-    //         data: {
-    //             name: message.data,
-    //             id: clientId
-    //         }
-    //     };
-    //     clientList.forEach((client) => {
-    //         if (client.readyState === WebSocket.OPEN) {
-    //             client.send(JSON.stringify(messageToSendToAll));
-    //         }
-    //     });
-    //     players.set(message.data, clientId );
-    //     console.log("Client", clientId, "is now known as", message.data);
-    // }
-    if(message.type === "change_name"){
+    if (message.type === "change_name") {
         // update the client name
         client.name = message.data;
         console.log("TODO : update the client name in the list of all clientList");
     }
-    else if(message.type == "private_message") {
+    else if (message.type == "private_message") {
 
-    
+
         console.log("Private message from", message.data.from.id, "to", message.data.to.id);
         const clientDest = clientList.getClientById(message.data.to.id);
         if (clientDest != null) {
@@ -135,27 +107,27 @@ function handleMessage(client, message) {
         // Diffuser la mise à jour du canvas à tous les clientList
         broadcastCanvasUpdate(message);
     }
-    
-    else if(message.type == "ambiance"){
+
+    else if (message.type == "ambiance") {
         console.log("Ambiance message received");
         handleAmbiance(message.data);
     }
-    
+
     else {
         console.log("Message type " + message.type + " not implemented yet");
     }
 }
 
-const ambianceEnable = ["storm"]
+const ambianceEnable = ["storm"];
+const nodeRedServerURL = 'http://127.0.0.1:1880/';
+
 function handleAmbiance(ambiance) {
     console.log("Ambiance received:", ambiance);
     if (ambianceEnable.includes(ambiance)) {
         console.log("Ambiance orage");
-        // send to node-red server GET request command/:command here : command/storm
-        const url = 'http://127.0.0.1:1880/commande/' + ambiance + '/';
+        const url = nodeRedServerURL + 'commande/' + ambiance + '/';
         const options = {
             method: 'GET',
-            // Supprimer l'option 'Content-Type': 'application/json'
         };
         const request = new Request(url, options);
         fetch(request)
@@ -173,6 +145,26 @@ function handleAmbiance(ambiance) {
     } else {
         console.log("Ambiance " + ambiance + " not implemented yet");
     }
+}
+
+
+function sendRequestNodeRed(method, commande) {
+    const url = nodeRedServerURL + commande
+    const options = {
+        method: method,
+    };
+    const request = new Request(url, options);
+    fetch(request)
+        .then(response => {
+            if (response.status === 200) {
+                console.log("Request sent");
+            } else {
+                console.error(`Request failed with status ${response.status}`);
+            }
+        })
+        .catch(error => {
+            console.error('Request failed', error);
+        });
 }
 
 
