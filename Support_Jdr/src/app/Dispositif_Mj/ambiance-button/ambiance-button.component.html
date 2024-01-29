@@ -6,6 +6,17 @@
     <span class="down-arrow"></span>
   </button>
   <div class="menu" *ngIf="menuOpen">
-    <a *ngFor="let option of options" href="#" (click)="handleOptionClick($event, option)">{{ option }}</a>
+    <ng-container *ngFor="let option of options">
+      <a *ngIf="option !== 'Option 1C'; else option1CInputField" href="#" (click)="handleOptionClick($event, option)">{{ option }}</a>
+    </ng-container>
+    <ng-template #option1CInputField>
+      <input
+        type="text"
+        [value]="option1CInput"
+        (input)="option1CInput = handleInputChange($event)"
+        (keyup.enter)="handleEnterKeyPress()"
+        placeholder="Enter a word"
+      />
+    </ng-template>
   </div>
 </div>

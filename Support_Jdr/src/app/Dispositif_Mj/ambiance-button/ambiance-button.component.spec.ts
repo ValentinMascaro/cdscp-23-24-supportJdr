@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AmbianceButtonComponent } from './ambiance-button.component';
 
 describe('AmbianceButtonComponent', () => {
@@ -8,7 +8,8 @@ describe('AmbianceButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AmbianceButtonComponent]
+      imports: [HttpClientModule], // Importez HttpClientModule ici
+      declarations: [AmbianceButtonComponent] // Déclarez le composant à tester ici
     })
     .compileComponents();
     
