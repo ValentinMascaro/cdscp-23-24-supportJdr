@@ -16,7 +16,7 @@ export class MainInterfaceMjComponent {
   messageContent = '';
   myMessages: any[] = [];
   
-  optionsForMeteoButton = ['Option 1A', 'Option 1B', 'Option 1C'];
+  optionsForMeteoButton = ['light', 'dark', 'Option 1C'];
   optionsForFestivalButton = ['Option 2A', 'Option 2B'];
   optionsForCombatButton = ['Option 3A', 'Option 3B', 'Option 3C', 'Option 3D'];
   optionsForTerrainButton = ['Option 3A', 'Option 3B', 'Option 3C', 'Option 3D'];
