@@ -22,6 +22,7 @@ export class MainInterfaceMjComponent {
   optionsForTerrainButton = ['Option 3A', 'Option 3B', 'Option 3C', 'Option 3D'];
 
 
+
   constructor(public pubnubService: PubnubService) {
     this.pubnubService.messages.subscribe(messages => {
       this.myMessages = messages;
@@ -30,9 +31,11 @@ export class MainInterfaceMjComponent {
 
   sendMessage(): void {
     if (this.messageContent.trim()) {
-      this.pubnubService.sendMessage(this.messageContent, 'MJ', 'player1');
+      this.pubnubService.sendMessage(this.messageContent, 'MJ', 'player1',);
       this.messageContent = '';
     }
   }
+
+
 
 }

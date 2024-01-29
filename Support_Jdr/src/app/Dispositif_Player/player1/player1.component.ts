@@ -7,7 +7,7 @@ declare var require: any;
 const api = require('./api.js');
 
 @Component({
-  selector: 'app-player',
+  selector: 'app-player1',
   templateUrl: './player1.component.html',
   styleUrls: ['./player1.component.css'],
   imports: [CommonModule, FormsModule],
@@ -74,32 +74,4 @@ export class Player1Component implements OnInit {
       this.messageContent = '';
     }
   }
-
-
-
-
-
 }
-
-// import WhiteboardAPI from './WhiteboardAPI';
-// let boards: any[]; // Declare the 'boards' variable
-// WhiteboardAPI.getBoards().then(response => {
-//   console.log(response);
-//   boards = response.data; // Assign the 'data' property of 'response' to 'boards'
-//   for (let i = 0; i < boards.length; i++) {
-//     const board = boards[i];
-//     console.log(board);
-//   }
-//   // Get the first board in the array
-//   const board = boards[0];
-//   console.log(board);
-//   // Get the board's id
-//   const boardId = board.id;
-//   console.log(boardId);
-//   // build the URL for the board
-//   const boardURL = `${WhiteboardAPI.BASE_URL}/boards/${boardId}`;
-
-
-// }).catch(error => {
-//   console.error(error);
-// });

@@ -19,4 +19,13 @@ export class AmbianceButtonComponent {
     this.menuOpen = !this.menuOpen;
     console.log('Menu Open:', this.menuOpen); // Pour le débogage
   }
+
+  constructor() { }
+
+  handleOptionClick(event: Event, option: string): void {
+    event.preventDefault(); // Empêche le comportement par défaut du lien
+    if (option === 'Option 1A') {
+      console.log('Hello');
+    }
+}
 }
