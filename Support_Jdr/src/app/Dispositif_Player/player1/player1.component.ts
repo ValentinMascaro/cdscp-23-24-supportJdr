@@ -3,8 +3,9 @@ import { PubnubService } from '../../pub-nub.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+
 @Component({
-  selector: 'app-player',
+  selector: 'app-player1',
   templateUrl: './player1.component.html',
   styleUrls: ['./player1.component.css'],
   imports: [CommonModule, FormsModule],
