@@ -11,7 +11,21 @@
 
 
 
-
-
-
-  /*MESSAGERIE*/
+  .player-selection {
+    margin-bottom: 20px;
+  }
+  
+  .message-input {
+    margin-bottom: 20px;
+  }
+  
+  .sent-messages, .received-messages {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .sent-messages h3, .received-messages h3 {
+    margin-top: 0;
+  }
+  

@@ -28,23 +28,23 @@
 
 
 
-<!-- main-interface-mj.component.html -->
-<div class="message-box">
-  <textarea [(ngModel)]="messageContent" placeholder="Tapez votre message ici..."></textarea>
-  <div class="recipients">
-    <label>
-      <input type="checkbox" [(ngModel)]="sendToAllPlayers" (change)="toggleAllPlayers()">
-      Tous les joueurs
-    </label>
-    <div *ngFor="let player of players">
-      <label>
-        <input type="checkbox" [(ngModel)]="player.selected" [disabled]="sendToAllPlayers">
-        {{ player.pseudo }}
-      </label>
-    </div>
-  </div>
+<!-- Formulaire d'envoi de message -->
+<div class="message-input">
+  <input type="text" [(ngModel)]="messageContent" placeholder="Écrivez votre message ici">
   <button (click)="sendMessage()">Envoyer</button>
 </div>
+
+<!-- Affichage des messages -->
+<div class="messages">
+  <div *ngFor="let message of myMessages">
+    <strong>{{ message.sender }}:</strong> {{ message.content }}
+  </div>
+</div>
+
+
+  
+
+
 
 
 

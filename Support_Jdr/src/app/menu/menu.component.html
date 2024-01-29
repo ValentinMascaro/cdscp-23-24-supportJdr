@@ -1,0 +1,17 @@
+<div>
+    <button (click)="setMJ()">MJ</button>
+    <button (click)="setPlayer()">Player</button>
+  </div>
+  
+  <div *ngIf="isMJ">
+    <label for="mj-input">Enter MJ ID:</label>
+    <input id="mj-input" type="text" />
+  </div>
+  
+  <div *ngIf="isPlayer">
+    <label for="player-input">Enter Player ID:</label>
+    <input id="player-input" type="text" />
+  
+    <label for="player-name-input">Enter Player Name:</label>
+    <input id="player-name-input" type="text" />
+  </div>
