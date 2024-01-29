@@ -4,6 +4,8 @@ import { AmbianceButtonComponent } from '../ambiance-button/ambiance-button.comp
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PubnubService } from '../../pub-nub.service';
 
+import {fastWhiteBoard} from '../../lib/fastWhiteBoard';
+
 
 @Component({
   selector: 'app-main-interface-mj',
@@ -26,8 +28,17 @@ export class MainInterfaceMjComponent {
   constructor(public pubnubService: PubnubService) {
     this.pubnubService.messages.subscribe(messages => {
       this.myMessages = messages;
+
+      
     });
+
+
   }
+
+  ngOnInit() {
+    fastWhiteBoard(0);
+  }
+
 
   sendMessage(): void {
     if (this.messageContent.trim()) {
