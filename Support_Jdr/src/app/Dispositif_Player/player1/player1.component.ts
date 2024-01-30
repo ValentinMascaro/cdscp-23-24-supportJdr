@@ -7,7 +7,7 @@ import { fastWhiteBoard } from '../../lib/fastWhiteBoard';
 @Component({
   selector: 'app-player1',
   templateUrl: './player1.component.html',
-  styleUrls: ['./player1.component.css'],
+  styleUrls: ['../player.css', '../../tchat.css'],
   imports: [CommonModule, FormsModule],
   standalone: true
 })

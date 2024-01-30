@@ -13,7 +13,7 @@ interface Player {
 
 @Component({
   selector: 'app-main-interface-mj',
-  styleUrls: ['./main-interface-mj.component.css'],
+  styleUrls: ['./main-interface-mj.component.css' , "../../tchat.css"],
   templateUrl: './main-interface-mj.component.html',
   imports: [AmbianceButtonComponent, FormsModule, ReactiveFormsModule, CommonModule],
   standalone: true

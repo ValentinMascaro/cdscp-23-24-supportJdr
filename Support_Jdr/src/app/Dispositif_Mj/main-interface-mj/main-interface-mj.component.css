@@ -9,7 +9,6 @@
 #root * {
   margin: 0;
   padding: 0;
-  /* overflow: hidden; */
 }
 
 h1 {
@@ -22,10 +21,7 @@ h1 {
 }
 
 
-
 .main-interface-buttons {
-  /* position: relative;
-  left: 0; */
   position: absolute;
   top: 5%;
   width:15%;
@@ -44,7 +40,6 @@ h1 {
   left: 16% ;
   width: 70%;
   height: 80%;
-  /* height: 600px; */
   border: 1px solid black;
 }
 
@@ -63,66 +58,10 @@ h1 {
   left: 87% ;
   width: 13%;
   height: 95%;
-  /* border: 1px solid black; */
 }
 
-
-
-
-/* .main-interface-buttons {
-  width: fit-content;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  gap: 10px;
-  padding: 20px;
-} */
-
-
-/* 
-
-.player-selection {
-  margin-bottom: 20px;
-}
-
-.message-input {
-  margin-bottom: 20px;
-}
-
-.sent-messages,
-.received-messages {
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  padding: 10px;
-}
-
-.sent-messages h3,
-.received-messages h3 {
-  margin-top: 0;
-} */
-
-
-
-p {
-  overflow-wrap: break-word; /* This property ensures that long words are broken and wrapped onto the next line */
-}
-
-.message-send{
-  /* color */
-  background-color: #92ffa0;
-}
-
-.message-received{
-  /* color */
-  background-color: #b0b5ff;
-}
 
 .messages{
-  /* scrollable */
   height: calc(100% - 40px);
-  overflow-y: scroll !important;
-  /* from the bottom */
 }
 

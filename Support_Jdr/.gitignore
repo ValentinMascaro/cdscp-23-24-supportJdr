@@ -40,3 +40,8 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+
+/BackendV2/
+/BackendV3/
+/Server/

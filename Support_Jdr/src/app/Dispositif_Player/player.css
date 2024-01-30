@@ -39,18 +39,6 @@ h1 {
     
 }
 
-
-  p {
-    overflow-wrap: break-word; /* This property ensures that long words are broken and wrapped onto the next line */
-  }
-  
-  .message-send{
-    /* color */
-    background-color: #92ffa0;
-  }
-  
-  .message-received{
-    /* color */
-    background-color: #b0b5ff;
-  }
-  
+.messages{
+    height: calc(100% - 40px);
+}

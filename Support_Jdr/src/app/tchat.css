@@ -12,6 +12,5 @@ p {
 }
 
 .messages {
-    height: calc(100% - 40px);
     overflow-y: scroll !important;
 }
