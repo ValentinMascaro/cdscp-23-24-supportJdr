@@ -32,41 +32,23 @@ export class Player1Component implements OnInit {
 
     
   }
-
   sendMessage(): void {
     if (this.messageContent.trim()) {
-      this.pubnubService.sendMessage(this.messageContent, this.myId, 'all'); // 'all' ou un ID de joueur spécifique
+      const messageId = Math.random().toString(36).substr(2, 9); // Générer un messageId unique
+  
+      this.pubnubService.sendMessage(this.messageContent, this.myId, 'all', messageId); // 'all' ou un ID de joueur spécifique
+  
+      // Ajouter manuellement le message envoyé à myMessages
+      this.myMessages.push({
+        content: this.messageContent,
+        sender: this.myId,
+        recipient: 'all', // ou un ID de joueur spécifique
+        messageId: messageId,
+        timestamp: new Date()
+      });
+  
       this.messageContent = '';
     }
   }
+  
 }
-
-
-//   setTimeout(() => {
-//     // Get the iframe element
-//   const iframe = document.querySelector('#whiteboard_team') as HTMLIFrameElement;
-
-//   // Check if the iframe is not null
-//   if (iframe) {
-//     // Access the contentWindow of the iframe
-//     const iframeWindow = iframe.contentWindow;
-//     // Check if contentWindow is not null
-//     if (iframeWindow) {
-//       // Access the document inside the iframe
-//       const iframeDocument = iframeWindow.document;
-
-//       // Now you can interact with the content of the iframeDocument
-//       // For example, you can access elements inside the iframe:
-//       const iframeContentElement = iframeDocument.querySelector('#board');
-
-//       // Do something with the iframe content
-//       if (iframeContentElement) {
-//         console.log(iframeContentElement);
-//       }
-//     } else {
-//       console.error('Unable to access contentWindow of the iframe.');
-//     }
-//   } else {
-//     console.error('Unable to find the iframe element.');
-//   }
-// }, 3000);

@@ -30,18 +30,21 @@
   <div id="wt-container"></div>
 
 
-  <div class="message-input">
-    <select [(ngModel)]="selectedRecipient">
-      <option value="all">Tous</option>
-      <option value="player1">Joueur 1</option>
-      <option value="player2">Joueur 2</option>
-      <option value="player3">Joueur 3</option>
-      <option value="player4">Joueur 4</option>
-    </select>
-    <input type="text" [(ngModel)]="messageContent" placeholder="Écrivez votre message ici">
-    <button (click)="sendMessage()">Envoyer</button>
-  </div>
+<!-- Sélection des joueurs pour l'envoi de messages -->
+<div class="player-selection">
+  <label *ngFor="let player of players">
+    <input type="checkbox" [(ngModel)]="player.selected">
+    {{ player.pseudo }}
+  </label>
+  <input type="checkbox" [(ngModel)]="sendToAll">
+    Tous
+</div>
 
+<!-- Zone de saisie pour écrire un message -->
+<div class="message-input">
+  <input type="text" [(ngModel)]="messageContent" placeholder="Écrivez votre message ici">
+  <button (click)="sendMessage()">Envoyer</button>
+</div>
 
 <!-- Affichage des messages -->
 <div class="messages">
@@ -49,6 +52,7 @@
     <strong>{{ message.sender }}:</strong> {{ message.content }}
   </div>
 </div>
+
 
   
 

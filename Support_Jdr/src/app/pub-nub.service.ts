@@ -27,10 +27,17 @@ export class PubnubService {
     });
   }
 
-  sendMessage(message: string, sender: string, recipient: string): void {
+  sendMessage(message: string, sender: string, recipient: string, messageId: string): void {
+    const msg = {
+      content: message,
+      sender: sender,
+      recipient: recipient,
+      timestamp: new Date(),
+      messageId: messageId // Utiliser l'identifiant unique fourni
+    };
     this.pubnub.publish({
       channel: 'game_channel',
-      message: { content: message, sender: sender, recipient: recipient, timestamp: new Date() }
+      message: msg
     });
   }
 }
