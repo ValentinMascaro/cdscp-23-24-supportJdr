@@ -1,15 +1,45 @@
 declare var require: any;
 const api = require('./api.js');
 
-function fastWhiteBoard(idPlayer: number){
+function fastWhiteBoard(type: string){
+
+
+
+    if(type == "MJ") // MJ
+    {
+      const role:string = "editor"
+    }
+    if(type == "PJ") // Joueur
+    {
+      const role:string = "facilitator"
+    }
+    else{
+      const role:string = "viewer"
+    }
+
     const id = "e008c35c4bd5ed98ec5ccbfe943a8639"; // API KEY
     const boardCode = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+
+    let role: string;
+
+    if (type == "MJ") // MJ
+    {
+      role = "editor";
+    }
+    if (type == "PJ") // Joueur
+    {
+      role = "facilitator";
+    }
+    else {
+      role = "viewer";
+    }
 
     let wt = new api.default.WhiteboardTeam('#wt-container', {
       clientId: id, // Replace with your client ID
       boardCode: boardCode, // Replace with your board code
+
       participant: {
-        role: 'facilitator', // Set the role of the participant[^3^][3]
+        role: role, // Set the role of the participant
         name: Math.random().toString() + '_name' // Set the display name of the participant
       },
       board: {
@@ -24,7 +54,7 @@ function fastWhiteBoard(idPlayer: number){
     wt.addListener("ready", (ctx: any) => {
       console.log("The whiteboard is ready and user is: ", ctx.uid);
 
-      if(idPlayer == 0) // MJ
+      if(type == "MJ") // MJ
       {
         const urlHerbe = "http://localhost:4200/Player1/../../../assets/aerial_view.png";
         wt.drawImage(urlHerbe);

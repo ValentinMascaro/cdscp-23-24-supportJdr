@@ -28,7 +28,7 @@ export class Player3Component implements OnInit {
       );
     });
 
-    fastWhiteBoard(3);
+    fastWhiteBoard("PJ");
 
     
   }

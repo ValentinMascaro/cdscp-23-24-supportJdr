@@ -36,7 +36,7 @@ export class MainInterfaceMjComponent {
   }
 
   ngOnInit() {
-    fastWhiteBoard(0);
+    fastWhiteBoard("MJ");
   }
 
 

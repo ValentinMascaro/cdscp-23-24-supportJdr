@@ -27,7 +27,7 @@ export class Player2Component implements OnInit {
         msg.recipient === 'all'
       );
     });
-    fastWhiteBoard(2);
+    fastWhiteBoard("PJ");
   }
 
   sendMessage(): void {

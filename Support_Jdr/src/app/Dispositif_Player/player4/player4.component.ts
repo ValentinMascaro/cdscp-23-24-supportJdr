@@ -28,7 +28,7 @@ export class Player4Component implements OnInit {
       );
     });
 
-    fastWhiteBoard(4);
+    fastWhiteBoard("PJ");
 
     
   }
