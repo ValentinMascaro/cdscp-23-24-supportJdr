@@ -43,9 +43,17 @@
     <!-- Affichage des messages -->
     <div class="messages">
       <div *ngFor="let message of myMessages">
-        <strong>{{ message.sender }}:</strong> {{ message.content }}
+        <strong [ngClass]="{
+        'message-send': message.sender === 'MJ',
+        'message-received': message.sender !== 'MJ'
+      }">
+          {{ message.sender }}:
+        </strong>
+        <p> {{ message.content }}</p>
       </div>
     </div>
+
+    
   </div>
 
   <div id="players-container">

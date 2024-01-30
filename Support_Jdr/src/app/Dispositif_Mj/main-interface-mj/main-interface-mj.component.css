@@ -9,6 +9,7 @@
 #root * {
   margin: 0;
   padding: 0;
+  /* overflow: hidden; */
 }
 
 h1 {
@@ -80,7 +81,7 @@ h1 {
 } */
 
 
-
+/* 
 
 .player-selection {
   margin-bottom: 20px;
@@ -100,7 +101,28 @@ h1 {
 .sent-messages h3,
 .received-messages h3 {
   margin-top: 0;
+} */
+
+
+
+p {
+  overflow-wrap: break-word; /* This property ensures that long words are broken and wrapped onto the next line */
 }
 
+.message-send{
+  /* color */
+  background-color: #92ffa0;
+}
 
+.message-received{
+  /* color */
+  background-color: #b0b5ff;
+}
+
+.messages{
+  /* scrollable */
+  height: calc(100% - 40px);
+  overflow-y: scroll !important;
+  /* from the bottom */
+}
 

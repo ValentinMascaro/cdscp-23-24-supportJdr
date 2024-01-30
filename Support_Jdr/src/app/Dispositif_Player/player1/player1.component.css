@@ -31,10 +31,26 @@ h1 {
 }
 
 #tchat-service{
-    width: 100%;
+    width: calc(100% - 10px);
     height: calc(50% - 30px);
     padding: 10px !important;
     background-color: #ccc;
     border: 1px solid black;
     
 }
+
+
+  p {
+    overflow-wrap: break-word; /* This property ensures that long words are broken and wrapped onto the next line */
+  }
+  
+  .message-send{
+    /* color */
+    background-color: #92ffa0;
+  }
+  
+  .message-received{
+    /* color */
+    background-color: #b0b5ff;
+  }
+  
