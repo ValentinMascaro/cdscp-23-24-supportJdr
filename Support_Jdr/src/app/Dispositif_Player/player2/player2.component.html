@@ -1,2 +1,14 @@
-<p>player2 works!</p>
+<div class="message-input">
+    <input type="text" [(ngModel)]="messageContent" placeholder="Votre message">
+    <button (click)="sendMessage()">Envoyer</button>
+  </div>
+  
+  <div class="messages">
+    <div *ngFor="let message of myMessages">
+      <strong>{{ message.sender }}:</strong> {{ message.content }}
+    </div>
+  </div>
+
+  
+  
 <div id="wt-container"></div>

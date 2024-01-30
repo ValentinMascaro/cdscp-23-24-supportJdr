@@ -40,12 +40,14 @@ export class MainInterfaceMjComponent {
   }
 
 
-  sendMessage(): void {
-    if (this.messageContent.trim()) {
-      this.pubnubService.sendMessage(this.messageContent, 'MJ', 'player1',);
-      this.messageContent = '';
-    }
+  selectedRecipient = 'all';
+
+sendMessage(): void {
+  if (this.messageContent.trim()) {
+    this.pubnubService.sendMessage(this.messageContent, 'MJ', this.selectedRecipient);
+    this.messageContent = '';
   }
+}
 
 
 

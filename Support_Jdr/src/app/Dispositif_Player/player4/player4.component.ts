@@ -15,12 +15,17 @@ import {fastWhiteBoard} from '../../lib/fastWhiteBoard';
 export class Player4Component implements OnInit {
   messageContent = '';
   myMessages: any[] = [];
+  myId = 'player4';
 
   constructor(private pubnubService: PubnubService) { }
 
   ngOnInit() {
     this.pubnubService.messages.subscribe(messages => {
-      this.myMessages = messages.filter(msg => msg.recipient === 'player4' || msg.sender === 'player4');
+      this.myMessages = messages.filter(msg => 
+        msg.recipient === this.myId || 
+        msg.sender === this.myId || 
+        msg.recipient === 'all'
+      );
     });
 
     fastWhiteBoard(4);
@@ -30,9 +35,8 @@ export class Player4Component implements OnInit {
 
   sendMessage(): void {
     if (this.messageContent.trim()) {
-      this.pubnubService.sendMessage(this.messageContent, 'player4', 'MJ');
+      this.pubnubService.sendMessage(this.messageContent, this.myId, 'all'); // 'all' ou un ID de joueur spécifique
       this.messageContent = '';
     }
   }
-
 }

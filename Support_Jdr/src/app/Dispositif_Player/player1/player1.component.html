@@ -1,10 +1,8 @@
-<!-- Formulaire d'envoi de message -->
 <div class="message-input">
   <input type="text" [(ngModel)]="messageContent" placeholder="Votre message">
   <button (click)="sendMessage()">Envoyer</button>
 </div>
 
-<!-- Affichage des messages -->
 <div class="messages">
   <div *ngFor="let message of myMessages">
     <strong>{{ message.sender }}:</strong> {{ message.content }}
