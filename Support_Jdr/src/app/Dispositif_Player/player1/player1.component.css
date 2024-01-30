@@ -27,13 +27,14 @@ h1 {
 
 #wt-container {
     width: 100%;
-    height: 50%;
+    height: calc(50% + 30px)
 }
 
 #tchat-service{
     width: 100%;
-    height: 50%;
+    height: calc(50% - 30px);
     padding: 10px !important;
     background-color: #ccc;
     border: 1px solid black;
+    
 }
