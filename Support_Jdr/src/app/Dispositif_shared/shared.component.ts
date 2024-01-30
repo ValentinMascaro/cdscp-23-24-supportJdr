@@ -12,9 +12,14 @@ import { fastWhiteBoard } from '../lib/fastWhiteBoard';
     standalone: true
 })
 export class DispositifSharedComponent implements OnInit {
+    wb: any;
     ngOnInit() {
-        fastWhiteBoard("shared");
-
+        this.wb = fastWhiteBoard("shared");
     }
 
+    fullScreen() {
+        console.log("fullscreen");
+        this.wb.fullscreen();
+    }
+    
 }

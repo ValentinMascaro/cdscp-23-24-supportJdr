@@ -1,65 +1,73 @@
-<!-- main-interface-mj.component.html -->
-<div class="main-interface-buttons">
-    <app-ambiance-button 
-      imgSrc="../../../assets/weather.png"
-      title="Météo"
-      [options]="optionsForMeteoButton">
+<div id="root">
+  <h1>MJ interface</h1>
+
+
+
+  <!-- main-interface-mj.component.html -->
+  <div class="main-interface-buttons">
+    <app-ambiance-button imgSrc="../../../assets/weather.png" title="Météo" [options]="optionsForMeteoButton">
     </app-ambiance-button>
-  
-    <app-ambiance-button 
-      imgSrc="../../../assets/fete.png"
-      title="Festival"
-      [options]="optionsForFestivalButton">
+
+    <app-ambiance-button imgSrc="../../../assets/fete.png" title="Festival" [options]="optionsForFestivalButton">
     </app-ambiance-button>
-  
-    <app-ambiance-button 
-      imgSrc="../../../assets/duel.png"
-      title="Combat"
-      [options]="optionsForCombatButton">
+
+    <app-ambiance-button imgSrc="../../../assets/duel.png" title="Combat" [options]="optionsForCombatButton">
     </app-ambiance-button>
-  
-    <app-ambiance-button 
-      imgSrc="../../../assets/terrain.png" 
-      title="Terrain"
-      [options]="optionsForTerrainButton">
+
+    <app-ambiance-button imgSrc="../../../assets/terrain.png" title="Terrain" [options]="optionsForTerrainButton">
     </app-ambiance-button>
   </div>
 
-  
+
 
   <div id="wt-container"></div>
 
 
-<!-- Sélection des joueurs pour l'envoi de messages -->
-<div class="player-selection">
-  <label *ngFor="let player of players">
-    <input type="checkbox" [(ngModel)]="player.selected">
-    {{ player.pseudo }}
-  </label>
-  <input type="checkbox" [(ngModel)]="sendToAll">
-    Tous
-</div>
+  <div id="tchat-service">
+    <!-- Sélection des joueurs pour l'envoi de messages -->
+    <div class="player-selection">
+      <label *ngFor="let player of players">
+        <input type="checkbox" [(ngModel)]="player.selected">
+        {{ player.pseudo }}
+      </label>
+      <input type="checkbox" [(ngModel)]="sendToAll">
+      Tous
+    </div>
 
-<!-- Zone de saisie pour écrire un message -->
-<div class="message-input">
-  <input type="text" [(ngModel)]="messageContent" placeholder="Écrivez votre message ici">
-  <button (click)="sendMessage()">Envoyer</button>
-</div>
+    <!-- Zone de saisie pour écrire un message -->
+    <div class="message-input">
+      <input type="text" [(ngModel)]="messageContent" placeholder="Écrivez votre message ici">
+      <button (click)="sendMessage()">Envoyer</button>
+    </div>
 
-<!-- Affichage des messages -->
-<div class="messages">
-  <div *ngFor="let message of myMessages">
-    <strong>{{ message.sender }}:</strong> {{ message.content }}
+    <!-- Affichage des messages -->
+    <div class="messages">
+      <div *ngFor="let message of myMessages">
+        <strong>{{ message.sender }}:</strong> {{ message.content }}
+      </div>
+    </div>
   </div>
+
+  <div id="players-container">
+    <div class="player">
+      <h2>Joueur 1</h2>
+      <p>Texte aléatoire</p>
+    </div>
+    <div class="player">
+      <h2>Joueur 2</h2>
+      <p>Texte aléatoire</p>
+    </div>
+    <div class="player">
+      <h2>Joueur 3</h2>
+      <p>Texte aléatoire</p>
+    </div>
+    <div class="player">
+      <h2>Joueur 4</h2>
+      <p>Texte aléatoire</p>
+    </div>
+  </div>
+
+
+
+
 </div>
-
-
-  
-
-
-
-
-
-
-
-  

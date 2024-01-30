@@ -17,6 +17,8 @@ export class Player1Component implements OnInit {
   myMessages: any[] = [];
   myId = 'player1';
 
+  wb: any;
+
   constructor(private pubnubService: PubnubService) { }
 
   ngOnInit() {
@@ -50,5 +52,7 @@ export class Player1Component implements OnInit {
       this.messageContent = '';
     }
   }
+
+
   
 }

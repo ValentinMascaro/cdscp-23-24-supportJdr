@@ -1,13 +1,23 @@
-<div class="message-input">
-  <input type="text" [(ngModel)]="messageContent" placeholder="Votre message">
-  <button (click)="sendMessage()">Envoyer</button>
-</div>
-
-<div class="messages">
-  <div *ngFor="let message of myMessages">
-    <strong>{{ message.sender }}:</strong> {{ message.content }}
+<div id="root">
+  <h1>PJ-1 interface</h1>
+  <div id="wt-container"></div>
+  <div id="tchat-service">
+    <div class="message-input">
+      <input type="text" [(ngModel)]="messageContent" placeholder="Votre message">
+      <button (click)="sendMessage()">Envoyer</button>
+    </div>
+    
+    <div class="messages">
+      <div *ngFor="let message of myMessages">
+        <strong>{{ message.sender }}:</strong> {{ message.content }}
+      </div>
+    </div>
   </div>
 </div>
 
-<div id="wt-container"></div>
+
+
+
+
+
 

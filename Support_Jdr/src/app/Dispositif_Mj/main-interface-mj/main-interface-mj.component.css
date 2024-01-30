@@ -1,31 +1,106 @@
-/* main-interface-mj.component.css */
+#root   {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#root * {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  position: absolute;
+  top: 0;
+  height: 5%;
+  width: 100%;
+  background-color: #ccc;
+  border: 1px solid black;
+}
+
+
+
 .main-interface-buttons {
-    display: flex;
-    flex-direction: column; /* Changez en 'row' si vous préférez un alignement horizontal */
-    align-items: center; /* Centrer les boutons verticalement s'ils sont en ligne */
-    justify-content: space-around; /* Espacer uniformément les boutons */
-    gap: 10px; /* Espacer les boutons verticalement */
-    padding: 20px;
-  }
-  
+  /* position: relative;
+  left: 0; */
+  position: absolute;
+  top: 5%;
+  width:15%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+
+  padding-top: 10px !important;
+
+}
+
+#wt-container {
+  position: absolute;
+  top: 5%;
+  left: 16% ;
+  width: 70%;
+  height: 80%;
+  /* height: 600px; */
+  border: 1px solid black;
+}
+
+#tchat-service{
+  position: absolute;
+  top: 85%;
+  left: 16% ;
+  width: 70%;
+  height: 15%;
+  border: 1px solid black;
+}
+
+#players-container{
+  position: absolute;
+  top: 5%;
+  left: 87% ;
+  width: 13%;
+  height: 95%;
+  /* border: 1px solid black; */
+}
 
 
 
-  .player-selection {
-    margin-bottom: 20px;
-  }
-  
-  .message-input {
-    margin-bottom: 20px;
-  }
-  
-  .sent-messages, .received-messages {
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    padding: 10px;
-  }
-  
-  .sent-messages h3, .received-messages h3 {
-    margin-top: 0;
-  }
-  
+
+/* .main-interface-buttons {
+  width: fit-content;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+  padding: 20px;
+} */
+
+
+
+
+.player-selection {
+  margin-bottom: 20px;
+}
+
+.message-input {
+  margin-bottom: 20px;
+}
+
+.sent-messages,
+.received-messages {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.sent-messages h3,
+.received-messages h3 {
+  margin-top: 0;
+}
+
+
+
