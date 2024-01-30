@@ -36,13 +36,16 @@ export class MainInterfaceMjComponent {
 
   constructor(public pubnubService: PubnubService) {
     this.pubnubService.messages.subscribe(allMessages => {
-      // Filtrer pour n'inclure que les nouveaux messages uniques et les messages non envoyés par le MJ
-      const newMessages = allMessages.filter(newMsg => 
-        !this.myMessages.some(existingMsg => existingMsg.messageId === newMsg.messageId) &&
-        newMsg.sender !== 'MJ' // Exclure les messages envoyés par le MJ
+      // Filtrer pour inclure uniquement les messages adressés au MJ ou à tous
+      const filteredMessages = allMessages.filter(msg => 
+        msg.recipient === 'MJ' || msg.recipient === 'all'
       );
   
-      // Ajouter les nouveaux messages uniques à myMessages
+      // Ajouter uniquement les nouveaux messages uniques à myMessages
+      const newMessages = filteredMessages.filter(newMsg => 
+        !this.myMessages.some(existingMsg => existingMsg.messageId === newMsg.messageId)
+      );
+  
       this.myMessages.push(...newMessages);
     });
   }
