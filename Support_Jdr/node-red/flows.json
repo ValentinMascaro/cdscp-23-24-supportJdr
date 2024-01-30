@@ -1,0 +1,1279 @@
+[
+    {
+        "id": "8ac36fa1255e327f",
+        "type": "tab",
+        "label": "Generic",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d8d46ac0a7552104",
+        "type": "file",
+        "z": "8ac36fa1255e327f",
+        "name": "write config",
+        "filename": "configRoll/roll.config",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1270,
+        "y": 180,
+        "wires": [
+            [
+                "d237664a99f8497a"
+            ]
+        ]
+    },
+    {
+        "id": "485f79a1f1a00111",
+        "type": "http request",
+        "z": "8ac36fa1255e327f",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://openhab.ubiquarium.fr/rest/items/",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 930,
+        "y": 180,
+        "wires": [
+            [
+                "b09ffd8762cd916c"
+            ]
+        ]
+    },
+    {
+        "id": "610224137b8aacdf",
+        "type": "inject",
+        "z": "8ac36fa1255e327f",
+        "name": "start",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 720,
+        "y": 180,
+        "wires": [
+            [
+                "485f79a1f1a00111"
+            ]
+        ]
+    },
+    {
+        "id": "b09ffd8762cd916c",
+        "type": "json",
+        "z": "8ac36fa1255e327f",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1110,
+        "y": 180,
+        "wires": [
+            [
+                "d8d46ac0a7552104"
+            ]
+        ]
+    },
+    {
+        "id": "d60db0c70ffa2d34",
+        "type": "inject",
+        "z": "8ac36fa1255e327f",
+        "name": "exampleRead",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 770,
+        "y": 60,
+        "wires": [
+            [
+                "d237664a99f8497a"
+            ]
+        ]
+    },
+    {
+        "id": "d237664a99f8497a",
+        "type": "file in",
+        "z": "8ac36fa1255e327f",
+        "name": "read roll.config",
+        "filename": "configRoll/roll.config",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1000,
+        "y": 60,
+        "wires": [
+            [
+                "7f9124f80c3a6659"
+            ]
+        ]
+    },
+    {
+        "id": "7f9124f80c3a6659",
+        "type": "json",
+        "z": "8ac36fa1255e327f",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1170,
+        "y": 60,
+        "wires": [
+            [
+                "c0246990cce426ee"
+            ]
+        ]
+    },
+    {
+        "id": "c0246990cce426ee",
+        "type": "debug",
+        "z": "8ac36fa1255e327f",
+        "name": "read",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1330,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "1737464d8f4fc362",
+        "type": "http in",
+        "z": "8ac36fa1255e327f",
+        "name": "envoi commande vocal",
+        "url": "/commande/:commande",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 120,
+        "wires": [
+            [
+                "d555720ab04fbcd9",
+                "b9aead6831c174d0"
+            ]
+        ]
+    },
+    {
+        "id": "d555720ab04fbcd9",
+        "type": "function",
+        "z": "8ac36fa1255e327f",
+        "name": "function 8",
+        "func": "msg.payload = {\n    commande: String(msg.req.params.commande),\n    \n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 120,
+        "wires": [
+            [
+                "e17717d93714ce01",
+                "bf088c95c32d5861"
+            ]
+        ]
+    },
+    {
+        "id": "b9aead6831c174d0",
+        "type": "http response",
+        "z": "8ac36fa1255e327f",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 300,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "e17717d93714ce01",
+        "type": "switch",
+        "z": "8ac36fa1255e327f",
+        "name": "",
+        "property": "payload.commande",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "start",
+                "vt": "str"
+            },
+            {
+                "t": "regex",
+                "v": "^light\\.?s?$",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "^dark(\\.?ness)?\\.?$",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 4,
+        "x": 170,
+        "y": 320,
+        "wires": [
+            [
+                "d237664a99f8497a"
+            ],
+            [
+                "4109fd2f7491bef3"
+            ],
+            [
+                "270e97b4697b0d81"
+            ],
+            [
+                "b4f9e55f82a5306f"
+            ]
+        ]
+    },
+    {
+        "id": "8419586a7181f8e7",
+        "type": "catch",
+        "z": "8ac36fa1255e327f",
+        "name": "si configRoll.config existe pas",
+        "scope": [
+            "d237664a99f8497a"
+        ],
+        "uncaught": false,
+        "x": 750,
+        "y": 120,
+        "wires": [
+            [
+                "485f79a1f1a00111"
+            ]
+        ]
+    },
+    {
+        "id": "dbe6e933205494e1",
+        "type": "inject",
+        "z": "8ac36fa1255e327f",
+        "name": "readLight",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 640,
+        "y": 360,
+        "wires": [
+            [
+                "4109fd2f7491bef3"
+            ]
+        ]
+    },
+    {
+        "id": "4109fd2f7491bef3",
+        "type": "file in",
+        "z": "8ac36fa1255e327f",
+        "name": "read light.config.use",
+        "filename": "configRoll/light.config.use",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 790,
+        "y": 260,
+        "wires": [
+            [
+                "d72d04e6c72de145",
+                "78b20d072048a176"
+            ]
+        ]
+    },
+    {
+        "id": "d72d04e6c72de145",
+        "type": "debug",
+        "z": "8ac36fa1255e327f",
+        "name": "light",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1290,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "aa9e8e5c5d8ce2e9",
+        "type": "debug",
+        "z": "8ac36fa1255e327f",
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1440,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "2d0fda2b8b7a1e39",
+        "type": "function",
+        "z": "8ac36fa1255e327f",
+        "name": "function 10",
+        "func": "for (var i = 0; i < msg.payload.length; i++) {\n    var newMsg = {};\n    newMsg = {\n        item: msg.payload[i].item,\n        payload: msg.payload[i].payload,\n        delay:msg.payload[i].delay,\n    }\n    node.send(newMsg);\n}\nreturn null;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1190,
+        "y": 420,
+        "wires": [
+            [
+                "81167b274b7e9068",
+                "ba19eefa6007442e"
+            ]
+        ]
+    },
+    {
+        "id": "814f86367cf0b9d8",
+        "type": "json",
+        "z": "8ac36fa1255e327f",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1110,
+        "y": 360,
+        "wires": [
+            [
+                "aa9e8e5c5d8ce2e9",
+                "2d0fda2b8b7a1e39"
+            ]
+        ]
+    },
+    {
+        "id": "78b20d072048a176",
+        "type": "function",
+        "z": "8ac36fa1255e327f",
+        "name": "function 11",
+        "func": "var fileContent = msg.payload;\nvar lines = fileContent.split('\\n');\n\n// Initialiser un tableau pour stocker les objets JSON\nvar jsonObjects = [];\n\n// Parcourir chaque ligne et créer un objet JSON\nfor (var i = 0; i < lines.length; i++) {\n  if (lines[i].trim() !== '') {\n    var parts = lines[i].match(/\"([^\"]+)\"/g);\n    if (parts.length === 3) {\n      var jsonObject = {\n        item: parts[0].replace(/\"/g, ''),\n        payload: parts[1].replace(/\"/g, ''),\n        delay: parts[2].replace(/\"/g, '')\n      };\n      jsonObjects.push(jsonObject);\n    }\n  }\n}\n\n// Convertir le tableau d'objets JSON en chaîne JSON\nvar jsonString = JSON.stringify(jsonObjects);\n\n// Envoyer la chaîne JSON en sortie du nœud Function\nmsg.payload = jsonString;\n\nreturn msg;\n\n/*var fileContent = msg.payload;\n// Diviser la chaîne en lignes\nvar lines = fileContent.split('\\n');\n\n// Initialiser un tableau pour stocker les objets JSON\nvar jsonObjects = [];\n\n// Parcourir chaque ligne et créer un objet JSON\nfor (var i = 0; i < lines.length; i++) {\n  if (lines[i].trim() !== '') {\n    var jsonObject = {\n      item: lines[i].split(' ')[0],\n      payload: lines[i].split(' ')[1],\n      delay: lines[i].split(' ')[2],\n    };\n    jsonObjects.push(jsonObject);\n  }\n}\n\n// Convertir le tableau d'objets JSON en chaîne JSON\nvar jsonString = JSON.stringify(jsonObjects);\n\n// Envoyer la chaîne JSON en sortie du nœud Function\nmsg.payload = jsonString;\nreturn msg;*/",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 360,
+        "wires": [
+            [
+                "814f86367cf0b9d8"
+            ]
+        ]
+    },
+    {
+        "id": "81167b274b7e9068",
+        "type": "debug",
+        "z": "8ac36fa1255e327f",
+        "name": "debug 17",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1580,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "2c793af1ab21ca8d",
+        "type": "catch",
+        "z": "8ac36fa1255e327f",
+        "name": "si light.config.use  existe pas",
+        "scope": [
+            "4109fd2f7491bef3"
+        ],
+        "uncaught": false,
+        "x": 580,
+        "y": 480,
+        "wires": [
+            [
+                "3749ea03efef25df"
+            ]
+        ]
+    },
+    {
+        "id": "8956674f22b96458",
+        "type": "json",
+        "z": "8ac36fa1255e327f",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1050,
+        "y": 480,
+        "wires": [
+            [
+                "e25251b8a6d3841d"
+            ]
+        ]
+    },
+    {
+        "id": "e25251b8a6d3841d",
+        "type": "function",
+        "z": "8ac36fa1255e327f",
+        "name": "category=light",
+        "func": "// Initialiser la variable pour stocker les objets filtrés\nvar filteredObjects = [];\n\n// Parcourir chaque objet dans le tableau\nfor (var i = 0; i < msg.payload.length; i++) {\n    // Vérifier si la propriété 'category' contient le mot \"light\"\n    if (msg.payload[i].category && msg.payload[i].category.toLowerCase().includes(\"light\")) {\n        // Ajouter l'objet filtré à la liste\n        filteredObjects.push(msg.payload[i]);\n    }\n}\n\n// Mettre à jour le message avec les objets filtrés\nmsg.payload = filteredObjects;\n\n// Envoyer le message mis à jour\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 480,
+        "wires": [
+            [
+                "8c3d56915bae70d7"
+            ]
+        ]
+    },
+    {
+        "id": "3749ea03efef25df",
+        "type": "file in",
+        "z": "8ac36fa1255e327f",
+        "name": "read roll config 2",
+        "filename": "configRoll/roll.config",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 870,
+        "y": 480,
+        "wires": [
+            [
+                "8956674f22b96458"
+            ]
+        ]
+    },
+    {
+        "id": "906b9ac60cc62039",
+        "type": "catch",
+        "z": "8ac36fa1255e327f",
+        "name": "si read.roll.config  existe pas 2",
+        "scope": [
+            "3749ea03efef25df"
+        ],
+        "uncaught": false,
+        "x": 840,
+        "y": 580,
+        "wires": [
+            [
+                "30f16f1a3c153899"
+            ]
+        ]
+    },
+    {
+        "id": "30f16f1a3c153899",
+        "type": "function",
+        "z": "8ac36fa1255e327f",
+        "name": "function 12",
+        "func": "msg.payload = {\n    commande: \"start\",\n\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1110,
+        "y": 580,
+        "wires": [
+            [
+                "e17717d93714ce01",
+                "a2d3260d475be1fa"
+            ]
+        ]
+    },
+    {
+        "id": "a2d3260d475be1fa",
+        "type": "delay",
+        "z": "8ac36fa1255e327f",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1370,
+        "y": 580,
+        "wires": [
+            [
+                "3749ea03efef25df"
+            ]
+        ]
+    },
+    {
+        "id": "8c3d56915bae70d7",
+        "type": "function",
+        "z": "8ac36fa1255e327f",
+        "name": "type=\"Switch\"",
+        "func": "// Initialiser la variable pour stocker les objets filtrés par la catégorie \"light\" et le type \"Switch\"\nvar filteredSwitchObjects = [];\n\n// Parcourir chaque objet dans le tableau filtré par la catégorie \"light\"\nfor (var i = 0; i < msg.payload.length; i++) {\n    // Vérifier si la propriété 'type' est égale à \"Switch\"\n    if (msg.payload[i].type && msg.payload[i].type.toLowerCase() === \"switch\") {\n        // Ajouter l'objet filtré par le type \"Switch\" à la liste\n        filteredSwitchObjects.push(msg.payload[i]);\n    }\n}\n\n// Mettre à jour le message avec les objets filtrés par la catégorie \"light\" et le type \"Switch\"\nmsg.payload = filteredSwitchObjects;\n\n// Envoyer le message mis à jour\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1480,
+        "y": 480,
+        "wires": [
+            [
+                "fed2f80d165ae1e1"
+            ]
+        ]
+    },
+    {
+        "id": "3c344b6f595945ca",
+        "type": "file",
+        "z": "8ac36fa1255e327f",
+        "name": "ight.config.use",
+        "filename": "configRoll/light.config.use",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1860,
+        "y": 480,
+        "wires": [
+            [
+                "24632a06acab7415",
+                "4109fd2f7491bef3"
+            ]
+        ]
+    },
+    {
+        "id": "24632a06acab7415",
+        "type": "debug",
+        "z": "8ac36fa1255e327f",
+        "name": "light use",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1840,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "fed2f80d165ae1e1",
+        "type": "function",
+        "z": "8ac36fa1255e327f",
+        "name": "nomSwitch",
+        "func": "\nvar fileContent = \"\";\n\n// Parcourir chaque objet dans le tableau JSON\nfor (var i = 0; i < msg.payload.length; i++) {\n  // Ajouter le \"name\" suivi du mot \"on\" à la ligne du fichier\n  fileContent += \"\\\"\"+msg.payload[i].name+\"\\\"\" + \" \\\"ON\\\" \\\"0\\\"\\n\";\n}\n\n// Envoyer le contenu du fichier en sortie du nœud Function\nmsg.payload = fileContent;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1670,
+        "y": 480,
+        "wires": [
+            [
+                "3c344b6f595945ca"
+            ]
+        ]
+    },
+    {
+        "id": "270e97b4697b0d81",
+        "type": "file in",
+        "z": "8ac36fa1255e327f",
+        "name": "read dark.config.use",
+        "filename": "configRoll/dark.config.use",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 540,
+        "y": 700,
+        "wires": [
+            [
+                "9f40a44f653a9268",
+                "1000e8068f3c6beb"
+            ]
+        ]
+    },
+    {
+        "id": "9f40a44f653a9268",
+        "type": "debug",
+        "z": "8ac36fa1255e327f",
+        "name": "dark",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "1000e8068f3c6beb",
+        "type": "function",
+        "z": "8ac36fa1255e327f",
+        "name": "function 13",
+        "func": "var fileContent = msg.payload;\nvar lines = fileContent.split('\\n');\n\n// Initialiser un tableau pour stocker les objets JSON\nvar jsonObjects = [];\n\n// Parcourir chaque ligne et créer un objet JSON\nfor (var i = 0; i < lines.length; i++) {\n  if (lines[i].trim() !== '') {\n    var parts = lines[i].match(/\"([^\"]+)\"/g);\n    if (parts.length === 3) {\n      var jsonObject = {\n        item: parts[0].replace(/\"/g, ''),\n        payload: parts[1].replace(/\"/g, ''),\n        delay: parts[2].replace(/\"/g, '')\n      };\n      jsonObjects.push(jsonObject);\n    }\n  }\n}\n\n// Convertir le tableau d'objets JSON en chaîne JSON\nvar jsonString = JSON.stringify(jsonObjects);\n\n// Envoyer la chaîne JSON en sortie du nœud Function\nmsg.payload = jsonString;\n\nreturn msg;\n\n/*var fileContent = msg.payload;\n// Diviser la chaîne en lignes\nvar lines = fileContent.split('\\n');\n\n// Initialiser un tableau pour stocker les objets JSON\nvar jsonObjects = [];\n\n// Parcourir chaque ligne et créer un objet JSON\nfor (var i = 0; i < lines.length; i++) {\n  if (lines[i].trim() !== '') {\n    var jsonObject = {\n      item: lines[i].split(' ')[0],\n      payload: lines[i].split(' ')[1],\n      delay: lines[i].split(' ')[2],\n    };\n    jsonObjects.push(jsonObject);\n  }\n}\n\n// Convertir le tableau d'objets JSON en chaîne JSON\nvar jsonString = JSON.stringify(jsonObjects);\n\n// Envoyer la chaîne JSON en sortie du nœud Function\nmsg.payload = jsonString;\nreturn msg;*/",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 780,
+        "wires": [
+            [
+                "fd9de4c731cf6515"
+            ]
+        ]
+    },
+    {
+        "id": "fd9de4c731cf6515",
+        "type": "json",
+        "z": "8ac36fa1255e327f",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 930,
+        "y": 800,
+        "wires": [
+            [
+                "88dd40042aa6010d"
+            ]
+        ]
+    },
+    {
+        "id": "88dd40042aa6010d",
+        "type": "function",
+        "z": "8ac36fa1255e327f",
+        "name": "function 14",
+        "func": "for (var i = 0; i < msg.payload.length; i++) {\n    var newMsg = {};\n    newMsg = {\n        item: msg.payload[i].item,\n        payload: msg.payload[i].payload,\n        delay:msg.payload[i].delay,\n    }\n    node.send(newMsg);\n}\nreturn null;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 840,
+        "wires": [
+            [
+                "267aaaf5cd82bf89",
+                "1acdc7d5dd1135bd"
+            ]
+        ]
+    },
+    {
+        "id": "267aaaf5cd82bf89",
+        "type": "debug",
+        "z": "8ac36fa1255e327f",
+        "name": "debug 18",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1240,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "1b756f2d0cdd411c",
+        "type": "json",
+        "z": "8ac36fa1255e327f",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 970,
+        "y": 920,
+        "wires": [
+            [
+                "36873aff21fb84d5"
+            ]
+        ]
+    },
+    {
+        "id": "3e822772ad874c9f",
+        "type": "catch",
+        "z": "8ac36fa1255e327f",
+        "name": "si dark.config.use  existe pas",
+        "scope": [
+            "270e97b4697b0d81"
+        ],
+        "uncaught": false,
+        "x": 500,
+        "y": 920,
+        "wires": [
+            [
+                "073026be2fde6143"
+            ]
+        ]
+    },
+    {
+        "id": "073026be2fde6143",
+        "type": "file in",
+        "z": "8ac36fa1255e327f",
+        "name": "read roll config 3",
+        "filename": "configRoll/roll.config",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 790,
+        "y": 920,
+        "wires": [
+            [
+                "1b756f2d0cdd411c"
+            ]
+        ]
+    },
+    {
+        "id": "36873aff21fb84d5",
+        "type": "function",
+        "z": "8ac36fa1255e327f",
+        "name": "category=light",
+        "func": "// Initialiser la variable pour stocker les objets filtrés\nvar filteredObjects = [];\n\n// Parcourir chaque objet dans le tableau\nfor (var i = 0; i < msg.payload.length; i++) {\n    // Vérifier si la propriété 'category' contient le mot \"light\"\n    if (msg.payload[i].category && msg.payload[i].category.toLowerCase().includes(\"light\")) {\n        // Ajouter l'objet filtré à la liste\n        filteredObjects.push(msg.payload[i]);\n    }\n}\n\n// Mettre à jour le message avec les objets filtrés\nmsg.payload = filteredObjects;\n\n// Envoyer le message mis à jour\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 920,
+        "wires": [
+            [
+                "7dce7bb8c3da3a7d"
+            ]
+        ]
+    },
+    {
+        "id": "7dce7bb8c3da3a7d",
+        "type": "function",
+        "z": "8ac36fa1255e327f",
+        "name": "type=\"Switch\"",
+        "func": "// Initialiser la variable pour stocker les objets filtrés par la catégorie \"light\" et le type \"Switch\"\nvar filteredSwitchObjects = [];\n\n// Parcourir chaque objet dans le tableau filtré par la catégorie \"light\"\nfor (var i = 0; i < msg.payload.length; i++) {\n    // Vérifier si la propriété 'type' est égale à \"Switch\"\n    if (msg.payload[i].type && msg.payload[i].type.toLowerCase() === \"switch\") {\n        // Ajouter l'objet filtré par le type \"Switch\" à la liste\n        filteredSwitchObjects.push(msg.payload[i]);\n    }\n}\n\n// Mettre à jour le message avec les objets filtrés par la catégorie \"light\" et le type \"Switch\"\nmsg.payload = filteredSwitchObjects;\n\n// Envoyer le message mis à jour\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1400,
+        "y": 920,
+        "wires": [
+            [
+                "c694b515ca057db5"
+            ]
+        ]
+    },
+    {
+        "id": "c694b515ca057db5",
+        "type": "function",
+        "z": "8ac36fa1255e327f",
+        "name": "nomSwitch",
+        "func": "\nvar fileContent = \"\";\n\n// Parcourir chaque objet dans le tableau JSON\nfor (var i = 0; i < msg.payload.length; i++) {\n  // Ajouter le \"name\" suivi du mot \"on\" à la ligne du fichier\n  fileContent += \"\\\"\"+msg.payload[i].name+\"\\\"\" + \" \\\"OFF\\\" \\\"0\\\"\\n\";\n}\n\n// Envoyer le contenu du fichier en sortie du nœud Function\nmsg.payload = fileContent;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1590,
+        "y": 920,
+        "wires": [
+            [
+                "d816ddde7a6a54a7"
+            ]
+        ]
+    },
+    {
+        "id": "d816ddde7a6a54a7",
+        "type": "file",
+        "z": "8ac36fa1255e327f",
+        "name": "dark.config.use",
+        "filename": "configRoll/dark.config.use",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1780,
+        "y": 920,
+        "wires": [
+            [
+                "2b3bf385f64e3383",
+                "270e97b4697b0d81"
+            ]
+        ]
+    },
+    {
+        "id": "2b3bf385f64e3383",
+        "type": "debug",
+        "z": "8ac36fa1255e327f",
+        "name": "light use",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1760,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "c114e5ae22efdbdb",
+        "type": "delay",
+        "z": "8ac36fa1255e327f",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1290,
+        "y": 1020,
+        "wires": [
+            [
+                "073026be2fde6143"
+            ]
+        ]
+    },
+    {
+        "id": "1a48460293a64751",
+        "type": "function",
+        "z": "8ac36fa1255e327f",
+        "name": "function 15",
+        "func": "msg.payload = {\n    commande: \"start\",\n\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 1020,
+        "wires": [
+            [
+                "c114e5ae22efdbdb",
+                "e17717d93714ce01"
+            ]
+        ]
+    },
+    {
+        "id": "a85f90c2780eb8c5",
+        "type": "catch",
+        "z": "8ac36fa1255e327f",
+        "name": "si read.roll.config  existe pas 3",
+        "scope": [
+            "073026be2fde6143"
+        ],
+        "uncaught": false,
+        "x": 760,
+        "y": 1020,
+        "wires": [
+            [
+                "1a48460293a64751"
+            ]
+        ]
+    },
+    {
+        "id": "b4f9e55f82a5306f",
+        "type": "function",
+        "z": "8ac36fa1255e327f",
+        "name": "function 16",
+        "func": "msg.payload = {\n    commande: \"configRoll/\"+msg.payload.commande + \".config.use\",\n    \n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 1160,
+        "wires": [
+            [
+                "8696ba94a5fe025b",
+                "e1cc70f3e51e9b19"
+            ]
+        ]
+    },
+    {
+        "id": "e1cc70f3e51e9b19",
+        "type": "debug",
+        "z": "8ac36fa1255e327f",
+        "name": "debug 19",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "8696ba94a5fe025b",
+        "type": "file in",
+        "z": "8ac36fa1255e327f",
+        "name": "",
+        "filename": "payload.commande",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 580,
+        "y": 1160,
+        "wires": [
+            [
+                "9632c17509744691",
+                "98edd6bdd6e9a85f"
+            ]
+        ]
+    },
+    {
+        "id": "91c1c0b5fbd74461",
+        "type": "json",
+        "z": "8ac36fa1255e327f",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 990,
+        "y": 1160,
+        "wires": [
+            [
+                "0f4d3b57ca16e155"
+            ]
+        ]
+    },
+    {
+        "id": "9632c17509744691",
+        "type": "function",
+        "z": "8ac36fa1255e327f",
+        "name": "function 17",
+        "func": "var fileContent = msg.payload;\nvar lines = fileContent.split('\\n');\n\n// Initialiser un tableau pour stocker les objets JSON\nvar jsonObjects = [];\n\n// Parcourir chaque ligne et créer un objet JSON\nfor (var i = 0; i < lines.length; i++) {\n  if (lines[i].trim() !== '') {\n    var parts = lines[i].match(/\"([^\"]+)\"/g);\n    if (parts.length === 3) {\n      var jsonObject = {\n        item: parts[0].replace(/\"/g, ''),\n        payload: parts[1].replace(/\"/g, ''),\n        delay: parts[2].replace(/\"/g, '')\n      };\n      jsonObjects.push(jsonObject);\n    }\n  }\n}\n\n// Convertir le tableau d'objets JSON en chaîne JSON\nvar jsonString = JSON.stringify(jsonObjects);\n\n// Envoyer la chaîne JSON en sortie du nœud Function\nmsg.payload = jsonString;\n\nreturn msg;\n\n/*var fileContent = msg.payload;\n// Diviser la chaîne en lignes\nvar lines = fileContent.split('\\n');\n\n// Initialiser un tableau pour stocker les objets JSON\nvar jsonObjects = [];\n\n// Parcourir chaque ligne et créer un objet JSON\nfor (var i = 0; i < lines.length; i++) {\n  if (lines[i].trim() !== '') {\n    var jsonObject = {\n      item: lines[i].split(' ')[0],\n      payload: lines[i].split(' ')[1],\n      delay: lines[i].split(' ')[2],\n    };\n    jsonObjects.push(jsonObject);\n  }\n}\n\n// Convertir le tableau d'objets JSON en chaîne JSON\nvar jsonString = JSON.stringify(jsonObjects);\n\n// Envoyer la chaîne JSON en sortie du nœud Function\nmsg.payload = jsonString;\nreturn msg;*/",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 1160,
+        "wires": [
+            [
+                "91c1c0b5fbd74461",
+                "7143969962cf60ba"
+            ]
+        ]
+    },
+    {
+        "id": "0f4d3b57ca16e155",
+        "type": "function",
+        "z": "8ac36fa1255e327f",
+        "name": "function 18",
+        "func": "for (var i = 0; i < msg.payload.length; i++) {\n    var newMsg = {};\n    newMsg = {\n        item: msg.payload[i].item,\n        payload: msg.payload[i].payload,\n        delay:msg.payload[i].delay,\n    }\n    node.send(newMsg);\n}\nreturn null;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 1160,
+        "wires": [
+            [
+                "bd96a112677b8d37"
+            ]
+        ]
+    },
+    {
+        "id": "3598a41675f83249",
+        "type": "debug",
+        "z": "8ac36fa1255e327f",
+        "name": "direct",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1570,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "bd96a112677b8d37",
+        "type": "delay",
+        "z": "8ac36fa1255e327f",
+        "name": "",
+        "pauseType": "delayv",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1380,
+        "y": 1240,
+        "wires": [
+            [
+                "3598a41675f83249",
+                "349a7e2f9042d198"
+            ]
+        ]
+    },
+    {
+        "id": "98edd6bdd6e9a85f",
+        "type": "debug",
+        "z": "8ac36fa1255e327f",
+        "name": "debug 20",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "7143969962cf60ba",
+        "type": "debug",
+        "z": "8ac36fa1255e327f",
+        "name": "debug 21",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 950,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "ba19eefa6007442e",
+        "type": "openhab2-out2",
+        "z": "8ac36fa1255e327f",
+        "name": "",
+        "controller": "f33be889430a5f14",
+        "itemname": "",
+        "topic": "ItemCommand",
+        "payload": "",
+        "onlywhenchanged": false,
+        "x": 1740,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "349a7e2f9042d198",
+        "type": "openhab2-out2",
+        "z": "8ac36fa1255e327f",
+        "name": "",
+        "controller": "f33be889430a5f14",
+        "itemname": "",
+        "topic": "ItemCommand",
+        "payload": "",
+        "onlywhenchanged": false,
+        "x": 1560,
+        "y": 1180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1acdc7d5dd1135bd",
+        "type": "openhab2-out2",
+        "z": "8ac36fa1255e327f",
+        "name": "",
+        "controller": "f33be889430a5f14",
+        "itemname": "",
+        "topic": "ItemCommand",
+        "payload": "",
+        "onlywhenchanged": false,
+        "x": 1460,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8b99cdd7a27b734c",
+        "type": "function",
+        "z": "8ac36fa1255e327f",
+        "name": "function 19",
+        "func": "for (var i = 0; i < msg.payload.length; i++) {\n    var newMsg = {};\n    newMsg = {\n        item: msg.payload[i].item,\n        payload: msg.payload[i].payload,\n        delay:msg.payload[i].delay,\n    }\n    node.send(newMsg);\n}\nreturn null;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1650,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bf088c95c32d5861",
+        "type": "debug",
+        "z": "8ac36fa1255e327f",
+        "name": "http in",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "f33be889430a5f14",
+        "type": "openhab2-controller2",
+        "name": "openHAB Ubiquarium",
+        "protocol": "http",
+        "host": "openhab.ubiquarium.fr",
+        "port": "8080",
+        "path": "",
+        "username": "",
+        "password": "",
+        "ohversion": "v3",
+        "token": "oh.dummyiot.6vBgcdLf3QqdVRnWmy3r4RjMdjp17tLZC06EskSpDH1oAQ9sQLXQCxI2uuBaFQRkmzB1tsSfIFH9p7C3GjsQ"
+    }
+]
