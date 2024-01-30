@@ -1,14 +1,36 @@
-<div class="message-input">
+<!-- Sélection des destinataires pour l'envoi de messages -->
+<div class="recipient-selection">
+    <label>
+      <input type="checkbox" [(ngModel)]="sendToAll"> Tous
+    </label>
+    <label>
+        <input type="checkbox" [(ngModel)]="sendToMJ"> Maître du Jeu
+    </label>
+    <label>
+      <input type="checkbox" [(ngModel)]="sendToPlayer1"> Joueur 1
+    </label>
+    <label>
+      <input type="checkbox" [(ngModel)]="sendToPlayer2"> Joueur 2
+    </label>
+    <label>
+      <input type="checkbox" [(ngModel)]="sendToPlayer3"> Joueur 3
+    </label>
+
+    <!-- Ajoutez des cases à cocher pour d'autres joueurs si nécessaire -->
+  </div>
+  
+  <!-- Formulaire d'envoi de message -->
+  <div class="message-input">
     <input type="text" [(ngModel)]="messageContent" placeholder="Votre message">
     <button (click)="sendMessage()">Envoyer</button>
   </div>
   
+  <!-- Affichage des messages -->
   <div class="messages">
     <div *ngFor="let message of myMessages">
       <strong>{{ message.sender }}:</strong> {{ message.content }}
     </div>
   </div>
-
   
+  <div id="wt-container"></div>
   
-<div id="wt-container"></div>
