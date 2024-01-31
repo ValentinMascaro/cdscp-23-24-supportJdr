@@ -1,0 +1,6 @@
+/start =  generate the roll.config file => recap
+/light = prefab turn OFF light
+/dark = prefab turn ON light 
+
+ADDED
+/storm = effect light + alexa play sound

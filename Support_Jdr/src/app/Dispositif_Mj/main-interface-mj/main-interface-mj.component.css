@@ -65,3 +65,9 @@ h1 {
   height: calc(100% - 40px);
 }
 
+.player{
+  /* border top and bottom; */
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+

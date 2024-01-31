@@ -1,0 +1,24 @@
+"LightRGBTradfri01_Color" "ON" "0"
+"LightRGBTradfri01_Color" "268,64,100" "5000"
+"LightRGBTradfri02_Color" "ON" "0"
+"LightRGBTradfri02_Color" "268,64,100" "5000"
+"LightRGBTradfri01_Color" "OFF" "10000"
+"LightRGBTradfri02_Color" "OFF" "10000"
+"LightRGBTradfri01_Color" "ON" "15000"
+"LightRGBTradfri02_Color" "ON" "15000"
+"LightRGBTradfri02_Color" "OFF" "20000"
+"LightRGBTradfri01_Color" "OFF" "20000"
+"LightRGBTradfri01_Color" "ON" "25000"
+"LightRGBTradfri02_Color" "ON" "25000"
+"LightRGBTradfri02_Color" "OFF" "25000"
+"LightRGBTradfri01_Color" "OFF" "25000"
+
+"ClassroomLights02_Switch" "ON" "10000"
+
+"ClassroomLights02_Switch" "OFF" "15000"
+
+"ClassroomLights02_Switch" "ON" "20000"
+
+"ClassroomLights02_Switch" "OFF" "25000"
+"Alexa_TextCommand" "Alexa joue un sons d'ambiance tonnerre" "0"
+"Alexa_TextCommand" "Stop" "25000"
